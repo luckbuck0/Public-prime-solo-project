@@ -26,7 +26,8 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 
-// Routes for images
+// the route that saga is calling on this is then sent to avatarImages which
+// is just a variable we defined to hold the img.router
 app.use('/api/images', avatarImages)
 
 // Serve static files

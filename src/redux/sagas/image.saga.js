@@ -2,6 +2,8 @@
 import {put,takeLatest} from "redux-saga/effects"
 import axios from "axios"
 
+// saga function used to run a get route that will go to the server and 
+// eventually the database to retrieve the image of the user.
 function* fetchImages(){
 
     try{
@@ -13,6 +15,7 @@ function* fetchImages(){
     }
 }
 
+// exporting all the routes we need to use for the images 
 export default function* imagesSaga(){
     yield takeLatest('FETCH_IMAGES',fetchImages)
 }
