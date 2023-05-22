@@ -42,6 +42,7 @@ console.log('this is the images in userpage',images);
       type: 'FETCH_IMAGES'
     })
   }, []);
+  
   useEffect(() =>{
     dispatch({
       type: 'FETCH_WORKSPACES'

@@ -11,7 +11,7 @@ function* fetchImages(){
         console.log('this is results--->',results);
         yield put({type:'SET_IMAGES' ,payload: results.data})
     } catch (error) {
-        console.log('error in saga get route ----->', error);
+        console.log('error in images saga get route ----->', error);
     }
 }
 

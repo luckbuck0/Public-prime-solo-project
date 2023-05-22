@@ -29,5 +29,21 @@ router.post('/',rejectUnauthenticated,(req,res) =>{
     
 })
 
+router.get('/' ,rejectUnauthenticated, (req,res) => {
+
+const userId = req.user.id
+  const  queryValues=[userId]
+const queryText = `
+SELECT * FROM workspaces
+    WHERE user_id=$1;
+    `
+    pool.query(queryText,queryValues)
+    .then((results) => {
+        console.log('this is the workspace results from get route--->',results.rows);
+        res.send(results.rows)}).catch ((error) => {
+            console.log('error in the get route for workspaces -->',error);
+            res.sendStatus(500)
+        })
+})
 
 module.exports = router;
