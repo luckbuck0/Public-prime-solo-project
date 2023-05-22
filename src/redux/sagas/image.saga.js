@@ -5,7 +5,7 @@ import axios from "axios"
 function* fetchImages(){
 
     try{
-        const results = yield axios.get('api/images')
+        const results = yield axios.get('/api/images')
         console.log('this is results--->',results);
         yield put({type:'SET_IMAGES' ,payload: results.data})
     } catch (error) {
