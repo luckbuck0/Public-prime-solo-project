@@ -12,6 +12,8 @@ const userRouter = require('./routes/user.router');
 
 //Route to the images 
 const avatarImages= require('../server/routes/img.routes')
+
+const workspace = require('../server/routes/workspace.routes')
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +31,9 @@ app.use('/api/user', userRouter);
 // the route that saga is calling on this is then sent to avatarImages which
 // is just a variable we defined to hold the img.router
 app.use('/api/images', avatarImages)
+
+app.use('/api/workspaces', workspace)
+
 
 // Serve static files
 app.use(express.static('build'));

@@ -14,7 +14,7 @@ function UserPage() {
   const addWorkspace = () =>{
     if (workspaceName!='' && imageUrl!=''){
       dispatch({
-        type:'ADD_WORKSPACE',
+        type:'ADD_WORKSPACES',
         payload:{
           workspaceName:workspaceName,
           imageUrl:imageUrl
@@ -40,6 +40,11 @@ console.log('this is the images in userpage',images);
   useEffect(() =>{
     dispatch({
       type: 'FETCH_IMAGES'
+    })
+  }, []);
+  useEffect(() =>{
+    dispatch({
+      type: 'FETCH_WORKSPACES'
     })
   }, []);
 
