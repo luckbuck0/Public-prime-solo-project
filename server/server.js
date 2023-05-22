@@ -10,6 +10,8 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 
+//Route to the images 
+const avatarImages= require('../server/routes/img.routes')
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,6 +25,9 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+
+// Routes for images
+app.use('api/images', avatarImages)
 
 // Serve static files
 app.use(express.static('build'));

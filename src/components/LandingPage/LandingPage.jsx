@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 
+//importing necessary tools to utilize dispatch
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
@@ -9,9 +12,19 @@ function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
 
+//intitializing tools to use for dispatch
+const dispatch= useDispatch();
+const images= useSelector((store)=> store.images)
+console.log('this is images--->',images);
   const onLogin = (event) => {
     history.push('/login');
   };
+
+  useEffect(() =>{
+    dispatch({
+      type: 'FETCH_IMAGES'
+    })
+  })
 
   return (
     <div className="container">
