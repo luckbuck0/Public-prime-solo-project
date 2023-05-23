@@ -5,9 +5,10 @@ import { useDispatch} from 'react-redux';
 import { useEffect,useState } from 'react';
 
 
+
 export default function TabsPage() {
 
-    
+    const tabs = useSelector((store) => store.tabs)
 
     
     const [name,setName] = useState('');
@@ -28,6 +29,12 @@ export default function TabsPage() {
             })
         }
     }
+
+    useEffect(() =>{
+        dispatch({
+          type: 'FETCH_TABS'
+        })
+      }, []);
 
     return (
         <div>

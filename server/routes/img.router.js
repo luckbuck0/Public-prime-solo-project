@@ -14,9 +14,7 @@ const {
 // router used to retrieve the profile image of the logged in users 
 // from the database
 router.get('/', rejectUnauthenticated, (req, res) => {
-const queryText = `
 
-`
     pool.query(`SELECT img.id AS img_id, photo_url
     FROM "img"
    JOIN "user" 
@@ -26,7 +24,7 @@ const queryText = `
        
         res.send(results.rows)
     }). catch ((error) => {
-      console.log('error in the img routes file ---->', error);
+      console.log('error in the img router file ---->', error);
       res.sendStatus(500);
     })
      

@@ -11,6 +11,10 @@
  you added in your database. Also send the images for the male and female
  images to the database to be called on later for the avatar img.
 
- //4.Start doing post routes for the bookmarks and put in the html
- to capture the inputs.
+ //4.Start doing post routes for the workspaces and put in the html to capture the inputs. create the routes with client-saga-reducer-server and database setup.
+ 
+
+ //5. Start doing get routes for the workspaces
+
+ //6. repeat these same steps for the tabs routes 
 
