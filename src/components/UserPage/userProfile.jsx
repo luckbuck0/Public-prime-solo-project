@@ -13,6 +13,7 @@ export default function UserProfile () {
     const [workspaceName, setWorkspaceName] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [selectedCategory,setSelectedCategory] = useState('')
+  const [notes,setNotes] = useState('')
     const [istrue,setIsTrue]= useState(false)
 
     const setTrue = () => {
@@ -23,22 +24,24 @@ export default function UserProfile () {
     function showAddWorkspace() {
         if (istrue == true) {
             return (
-                <div>
-
+                <div >
+                    <div >
                     <input
                         type="text"
                         name="name"
                         placeholder='name'
                         required
                         value={workspaceName}
-                        onChange={(event) => setWorkspaceName(event.target.value)} />
+                        onChange={(event) => setWorkspaceName(event.target.value)} /> <br />
                     <input
                         type="text"
                         name="name"
                         placeholder='image_url'
                         required
                         value={imageUrl}
-                        onChange={(event) => setImageUrl(event.target.value)} />
+                        onChange={(event) => setImageUrl(event.target.value)} /> <br />
+                        <textarea  onChange={(event) => setNotes(event.target.value)} value={notes} ></textarea>
+                        </div>
                     <select name="Category" id="category" value={selectedCategory} onChange={() => setSelectedCategory(event.target.value)}>
                         <option value="">Select an option</option>
                         <option value="Graphic Design">Graphic Design</option>
@@ -65,6 +68,7 @@ export default function UserProfile () {
         payload:{
           workspaceName:workspaceName,
           imageUrl:imageUrl,
+          notes:notes,
           selectedCategory:selectedCategory
         }
       })

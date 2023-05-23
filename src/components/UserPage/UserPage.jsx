@@ -68,10 +68,10 @@ console.log('this is the images in userpage',images);
         return (
             <div key={img.img_id}>
           <div className='profileArea' >
-            <img className='profileImg' src={img.photo_url} alt="fd" ></img>
-            <h2>Welcome, {user.username}!</h2> 
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
+          <img className='profileImg' src={img.photo_url} alt="fd" ></img>
+          <h2>Welcome, <br />{user.username}!</h2>  
+            
+          <LogOutButton className="btn" />
           </div>
           </div>
         )

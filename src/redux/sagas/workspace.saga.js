@@ -21,7 +21,17 @@ function* fetchWorkspaces() {
     }
 }
 
+function* updateWorkplace ( action ) {
+    try {
+    const response = yield axios.put(`/api/workspaces/${action.payload.id}`)
+    yield put({type:'FETCH_WORKSPACES'})
+    } catch (error)  {
+        console.log('thier is a error in the updateworkplace function in workplace saga--->',error);
+    }
+} 
+
 export default function* workplacesSaga(){
     yield takeLatest('ADD_WORKSPACES',postWorkspace)
     yield takeLatest('FETCH_WORKSPACES', fetchWorkspaces)
+    yield takeLatest('UPDATE_WORKPLACE',updateWorkplace)
 }
