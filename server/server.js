@@ -11,9 +11,14 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 
 //Route to the images 
-const avatarImages= require('../server/routes/img.routes')
+const avatarImages= require('./routes/img.router')
 
+//Route to the workspace
 const workspace = require('../server/routes/workspace.routes')
+
+//Route to the tabs
+const tabs = require('../server/routes/tabs.router')
+
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,7 +37,13 @@ app.use('/api/user', userRouter);
 // is just a variable we defined to hold the img.router
 app.use('/api/images', avatarImages)
 
+// the route that saga is calling on this is then sent to workspace which
+// is just a variable we defined to hold the workspace.router
 app.use('/api/workspaces', workspace)
+
+// the route that saga is calling on this is then sent to workspace which
+// is just a variable we defined to hold the workspace.router
+app.use('/api/tabs', tabs)
 
 
 // Serve static files

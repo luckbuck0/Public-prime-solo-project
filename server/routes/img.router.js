@@ -14,11 +14,14 @@ const {
 // router used to retrieve the profile image of the logged in users 
 // from the database
 router.get('/', rejectUnauthenticated, (req, res) => {
+const queryText = `
 
+`
     pool.query(`SELECT img.id AS img_id, photo_url
     FROM "img"
    JOIN "user" 
-   ON img.id= "user".image_id;`)
+   ON img.id= "user".image_id
+   LIMIT 1;`)
       .then((results) => {
        
         res.send(results.rows)

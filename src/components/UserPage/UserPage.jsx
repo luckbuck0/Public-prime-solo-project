@@ -28,6 +28,8 @@ function UserPage() {
 //reducer from redux that holds the value of the users profile img
 const images= useSelector((store)=> store.images)
 
+const workSpace = useSelector((store) => store.workspaces)
+console.log('this is the workSpace in userpage',workSpace);
 console.log('this is the images in userpage',images);
 
   const onLogin = (event) => {
@@ -43,6 +45,8 @@ console.log('this is the images in userpage',images);
     })
   }, []);
   
+  // use effect with the dispatch that will be sent to the workspace.saga 
+// to run a function
   useEffect(() =>{
     dispatch({
       type: 'FETCH_WORKSPACES'
