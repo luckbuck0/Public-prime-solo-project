@@ -37,6 +37,7 @@ Button
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
+  
 }
 
 .btn_sizeMin {
@@ -109,4 +110,39 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+
+.profileArea {
+  display: inline-block;
+  flex-direction: row;
+}
+
+.profileImg {
+  height: 238px;
+  width: 238px;
+}
+
+.plusButton {
+  height: 200px;
+  width: 250px;
+}
+
+.WorkSpaceDisplay {
+  display: flex;
+  flex-direction: row;
+}
+
+.displayImage {
+  height: 200px;
+  width: 250px;
+}
+
+.workspaceContainer {
+  display: inline-block;
+}
+
+.workspaceContent {
+  margin-left: 20px;
+  margin-top: 20px;
 }

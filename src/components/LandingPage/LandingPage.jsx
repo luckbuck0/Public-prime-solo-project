@@ -5,6 +5,7 @@ import './LandingPage.css';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
+import { func } from 'prop-types';
 
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');

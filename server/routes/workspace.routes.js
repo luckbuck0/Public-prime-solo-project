@@ -9,7 +9,7 @@ router.post('/',rejectUnauthenticated,(req,res) =>{
     const userId = req.user.id;
     const workspaceName= req.body.workspaceName;
     const imageUrl = req.body.imageUrl
-    const category = 'design'
+    const category = req.body.selectedCategory
     const sqlText = `
         INSERT INTO workspaces
         (user_id,name,image_url,category)

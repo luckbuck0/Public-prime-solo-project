@@ -6,25 +6,26 @@ import {useSelector} from 'react-redux';
 import { useDispatch} from 'react-redux';
 import { useEffect,useState } from 'react';
 
+import UserProfile from './userProfile';
+
 function UserPage() {
 
-  const [workspaceName, setWorkspaceName] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  
-  const addWorkspace = () =>{
-    if (workspaceName!='' && imageUrl!=''){
-      dispatch({
-        type:'ADD_WORKSPACES',
-        payload:{
-          workspaceName:workspaceName,
-          imageUrl:imageUrl
-        }
-      })
-    }
-  }
+ 
+
+    const user = useSelector((store) => store.user);
+
+    useEffect(() =>{
+        dispatch({
+          type: 'FETCH_IMAGES'
+        })
+      }, []);
+
+
+ 
 
   const dispatch= useDispatch();
 
+ 
 //reducer from redux that holds the value of the users profile img
 const images= useSelector((store)=> store.images)
 
@@ -36,6 +37,7 @@ console.log('this is the images in userpage',images);
     history.push('/login');
   };
 
+  
   
 // use effect with the dispatch that will be sent to the images.saga 
 // to run a function
@@ -54,38 +56,30 @@ console.log('this is the images in userpage',images);
   }, []);
 
   // this component doesn't do much to start, just renders some user reducer info to the DOM
-  const user = useSelector((store) => store.user);
+ 
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" />
-      <input
-            type="text"
-            name="name"
-            placeholder='name'
-            required
-            value={workspaceName}
-            onChange={(event) => setWorkspaceName(event.target.value)}
-          />
-          <input
-            type="text"
-            name="name"
-            placeholder='image_url'
-            required
-            value={imageUrl}
-            onChange={(event) => setImageUrl(event.target.value)}
-          />
-          <button onClick={addWorkspace}>Submit</button>
-     {
+     
+      
+      
+            
+      {
       images.map(img => {
         return (
-          <div key={img.img_id}>
-            <img src={img.photo_url} alt="fd" ></img>
+            <div key={img.img_id}>
+          <div className='profileArea' >
+            <img className='profileImg' src={img.photo_url} alt="fd" ></img>
+            <h2>Welcome, {user.username}!</h2> 
+      <p>Your ID is: {user.id}</p>
+      <LogOutButton className="btn" />
+          </div>
           </div>
         )
       })
      }
+    
+    <UserProfile/>
+     
      <div>
       
       </div>
