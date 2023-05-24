@@ -75,4 +75,23 @@ SELECT * FROM workspaces
         })
     } )
 
+    router.delete('/:id',rejectUnauthenticated, (req,res) => {
+        const workplace_id= req.params.id
+        const userId=req.user.id
+        const queryText = `
+        DELETE FROM workspaces
+        WHERE workspaces.id =$1
+         AND workspaces.user_id=$2;
+        `;
+        const queryValues=[workplace_id,userId]
+        console.log('this is query values-->',queryValues);
+
+        pool.query(queryText,queryValues).
+        then(results => {
+            res.sendStatus(200)
+        }).catch(error =>{
+                console.log('error in the delete router in workspace routes',error);
+            })
+    })
+
 module.exports = router;

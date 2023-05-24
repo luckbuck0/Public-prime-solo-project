@@ -32,8 +32,11 @@ function* updateWorkplace ( action ) {
 } 
 
 function* deleteWorkplace ( action ) {
-    try {   
-        const results = yield axios.delete('/api/workspaces/:id',action.payload)
+    try {   console.log('this is action.payload id', action.payload);
+        yield axios.delete(`/api/workspaces/${action.payload.id}`,)
+        yield put({type:'FETCH_WORKSPACES'})
+    } catch (error) {
+        console.log('error in the delete route in workpspace',error);
     }
   
 

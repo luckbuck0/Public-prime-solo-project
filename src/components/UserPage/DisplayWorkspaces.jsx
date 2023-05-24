@@ -20,7 +20,9 @@ const ifTrue = () => {
 const deleteWorkspace = () => {
     dispatch({
         type: 'DELETE_WORKSPACE',
-        payload:workSpace.id
+        payload:{
+            id:workSpace.id
+        }
     })
 }
 
@@ -83,7 +85,7 @@ const deleteWorkspace = () => {
         <p>Name:{workSpace.name} Category:{workSpace.category}</p>
         <img className="displayImage" src={workSpace.image_url} alt="" /> 
         <p>{workSpace.notes}</p>
-        <span onClick={ifTrue} >🖊</span><span onClick={deleteWorkspcae} className="text">🪣</span>
+        <span onClick={ifTrue} >🖊</span><span onClick={deleteWorkspace} className="text">🪣</span>
     </div>
     )
     }
