@@ -1,12 +1,14 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 export default function DisplaySpaces(props) {
     let workSpace = props.spaces
     const dispatch = useDispatch()
-    const [istrue, setIsTrue] = useState(false)
+    const history = useHistory()
 
+    const [istrue, setIsTrue] = useState(false)
+    
     const [workspaceName, setWorkspaceName] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('')
@@ -15,6 +17,10 @@ export default function DisplaySpaces(props) {
     const ifTrue = () => {
         setIsTrue(true)
         updateWorkspace()
+    }
+
+    const toWorkspace = () => {
+        history.push(`/tabs/${workSpace.id}`)
     }
 
     const deleteWorkspace = () => {
@@ -81,7 +87,7 @@ export default function DisplaySpaces(props) {
             )
         } else {
             return (
-                <div className="workspaceContent">
+                <div onClick={toWorkspace} className="workspaceContent">
                     <p>Name:{workSpace.name} Category:{workSpace.category}</p>
                     <img className="displayImage" src={workSpace.image_url} alt="" />
                     <p>{workSpace.notes}</p>

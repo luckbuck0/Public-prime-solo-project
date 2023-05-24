@@ -14,10 +14,11 @@ function* postTabs(action) {
 
 // function used to post get the tabs from database it is connected to the tabs saga
 // on export default
-function* fetchTabs() {
+function* fetchTabs(action) {
 
     try {
-        const results = yield axios.get('/api/tabs')
+        const results = yield axios.get(`/api/tabs/${action.payload.id}`)
+        console.log('this is action.payload.workSpaceId',action.payload);
         console.log('this is the results of tabs get route--->', results.data);
         yield put({ type: 'SET_TABS', payload: results.data })
     } catch (error) {

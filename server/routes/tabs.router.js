@@ -11,15 +11,17 @@ router.post('/', rejectUnauthenticated, (req,res) => {
     const name = req.body.name;
     const  url = req.body.url;
     const photo= req.body.photo;
-    const workspaceId=6;
-
+    const notes=req.body.notes
+    const workspaceId=req.body.id;
+    const userId= req.user.id
+    console.log('this is user id and workspace id--->',userId,workspaceId);
     const sqlText = `
         INSERT INTO tabs 
-        (name,url,photo,workspace_id)
+        (name,url,photo,notes,workspace_id,user_id)
         VALUES
-        ($1,$2,$3,$4)
+        ($1,$2,$3,$4,$5,$6)
     `;
-    const sqlValues = [name,url,photo,workspaceId]
+    const sqlValues = [name,url,photo,notes,workspaceId,userId]
 
     pool.query(sqlText,sqlValues)
     .then((results) => {
@@ -32,18 +34,19 @@ router.post('/', rejectUnauthenticated, (req,res) => {
 })
 
 //-----------------------------GET ROUTE TABS--------------------------------------
-router.get('/',rejectUnauthenticated, (req,res) =>{
+router.get('/:id',rejectUnauthenticated, (req,res) =>{
 
-    let workplaceId=6
-    
-    // const queryValues = [workplaceId]
-    // const queryText = `SELECT * FROM "tabs"
-    // WHERE workspace_id=6;
-    // `
+    const userId= req.user.id
+    const id = req.params.id;
+    console.log('this is workspace id--->',id);
+    const queryValues = [id,userId]
+    const queryText = `SELECT * FROM "tabs"
+    WHERE workspace_id=$1
+    AND user_id=$2;
+    `;
+   
 
-    pool.query(`SELECT * FROM "tabs"
-    WHERE workspace_id=6;
-    `)
+    pool.query(queryText,queryValues)
     .then((results) => {
         res.send(results.rows)
     }). catch ((error ) => {
