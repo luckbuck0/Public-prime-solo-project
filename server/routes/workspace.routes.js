@@ -48,13 +48,15 @@ SELECT * FROM workspaces
 })
 
     router.put('/:id', rejectUnauthenticated,(req,res) => {
+        console.log('this is req.body',req.body);
         console.log('in put route');
         const name = req.body.name
         const category = req.body.category
         const image_url= req.body.image_url
         const notes = req.body.notes
-        const workplaceId= req.body.workSpaceId
+        const workplaceId= req.body.id
         const userId = req.user.id
+        console.log('this is req.body' , req.body);
         const sqlText = `
         UPDATE workspaces
         SET "name" = $1,
@@ -65,7 +67,7 @@ SELECT * FROM workspaces
         AND user_id = $6
         `;
         const sqlValues = [name,category,image_url,notes,workplaceId,userId]
-
+        console.log('this is sqlValues',sqlValues);
         pool.query(sqlText,sqlValues)
         .then(() => {res.sendStatus(200)})
         .catch((error) => {

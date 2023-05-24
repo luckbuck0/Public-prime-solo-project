@@ -17,19 +17,33 @@ const ifTrue = () => {
     updateWorkspace()
 }
 
+const deleteWorkspace = () => {
+    dispatch({
+        type: 'DELETE_WORKSPACE',
+        payload:workSpace.id
+    })
+}
+
    const sendUpdate = () => {
+    if (workspaceName!='' && selectedCategory!='' && imageUrl!=''){
+        console.log('these are all the values', workspaceName,selectedCategory,imageUrl,notes);
     dispatch({
         type: 'UPDATE_WORKPLACE',
         payload: {
-            workSpaceId:workSpace.id,
+            id:workSpace.id,
             name:workspaceName,
             category:selectedCategory,
             image_url:imageUrl,
             notes:notes
         }
+       
     })
     setIsTrue(false)
     updateWorkspace()
+}
+    
+    
+   
    }
 
    const updateWorkspace = () => {
@@ -69,7 +83,7 @@ const ifTrue = () => {
         <p>Name:{workSpace.name} Category:{workSpace.category}</p>
         <img className="displayImage" src={workSpace.image_url} alt="" /> 
         <p>{workSpace.notes}</p>
-        <span onClick={ifTrue} >🖊</span><span className="text">🪣</span>
+        <span onClick={ifTrue} >🖊</span><span onClick={deleteWorkspcae} className="text">🪣</span>
     </div>
     )
     }
