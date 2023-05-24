@@ -71,8 +71,8 @@ router.put('/',rejectUnauthenticated, (req,res) => {
     SET "name" = $1,
     "url"=$2,
    "photo"=$3,
-   " notes"=$4
-    WHERE id=$5
+   "notes"=$4
+    WHERE workspace_id=$5
     AND user_id = $6
     `;
     console.log('this is all the data from put route in tabs router',sqlValues);
@@ -80,6 +80,9 @@ router.put('/',rejectUnauthenticated, (req,res) => {
     pool.query(sqlText,sqlValues)
     .then((results) => {
         console.log('this is the tabs results');
+        res.sendStatus(200)
+    }). catch ((error) => {
+        console.log('error in the put route in tabs --->',error);
     })
 })
 
