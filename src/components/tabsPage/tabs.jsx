@@ -109,6 +109,7 @@ export default function TabsPage() {
                         <div className='workspaceContainer' key={tab.id}>
                             <DisplayTabs
                                 tabs={tab}
+                                workSpaceId={workSpaceId}
                             />
 
                         </div>

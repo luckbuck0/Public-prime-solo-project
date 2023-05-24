@@ -1,8 +1,9 @@
 import { put, takeLatest } from "redux-saga/effects"
 import axios from "axios"
 
-// function used to post new tabs it is connected to the tabs saga
-// in the export default below
+
+//-----------------------------POST TABS SAGA--------------------------------------
+
 function* postTabs(action) {
     try {
         const results = yield axios.post('/api/tabs', action.payload)
@@ -12,8 +13,9 @@ function* postTabs(action) {
     }
 }
 
-// function used to post get the tabs from database it is connected to the tabs saga
-// on export default
+
+//-----------------------------GET TABS SAGA--------------------------------------
+
 function* fetchTabs(action) {
 
     try {
@@ -27,9 +29,24 @@ function* fetchTabs(action) {
 
 }
 
+//-----------------------------UPDATE TABS SAGA--------------------------------------
+
+function* updateTabs ( action ) {
+    
+    console.log('this is action payload in saga update tabs function--->',action.payload);
+    try {
+    const response = yield axios.put('/api/tabs',action.payload)
+    yield put({type:'FETCH_TABS'})
+    } catch (error) {
+        console.log('error in update tabs in tabs.saga file--->',error);
+    }
+} 
+
+
 // used to listen to all the dispatches on client side tabs.jsx file and run corresponding
 // functions
 export default function* tabsSaga() {
     yield takeLatest('POST_TABS', postTabs)
     yield takeLatest('FETCH_TABS', fetchTabs)
+    yield takeLatest('UPDATE_TABS',updateTabs)
 }

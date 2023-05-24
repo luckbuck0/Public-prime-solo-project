@@ -55,4 +55,32 @@ router.get('/:id',rejectUnauthenticated, (req,res) =>{
     })
 })
 
+//-----------------------------PUT ROUTE TABS--------------------------------------
+
+router.put('/',rejectUnauthenticated, (req,res) => {
+
+    const workSpaceId= req.body.id
+    const name = req.body.name
+    const url = req.body.url
+    const photo = req.body.photo
+    const notes = req.body.notes
+    const userId= req.user.id
+    const sqlValues = [name,url,photo,notes,workSpaceId,userId]
+    const sqlText = `
+    UPDATE tabs
+    SET "name" = $1,
+    "url"=$2,
+   "photo"=$3,
+   " notes"=$4
+    WHERE id=$5
+    AND user_id = $6
+    `;
+    console.log('this is all the data from put route in tabs router',sqlValues);
+
+    pool.query(sqlText,sqlValues)
+    .then((results) => {
+        console.log('this is the tabs results');
+    })
+})
+
 module.exports =router;
