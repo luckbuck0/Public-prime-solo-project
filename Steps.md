@@ -18,3 +18,9 @@
 
  //6. repeat these same steps for the tabs routes 
 
+ //7. Start doing put routes for the workspaces
+
+ //8. Start doing delete routes for the workspaces
+
+ //9. Repeat steps 7&8 for tabs routes
+

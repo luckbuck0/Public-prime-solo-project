@@ -11,8 +11,7 @@ const {
 } = require('../modules/authentication-middleware')
 
 
-// router used to retrieve the profile image of the logged in users 
-// from the database
+//-----------------------------GET ROUTE IMGS--------------------------------------
 router.get('/', rejectUnauthenticated, (req, res) => {
 
     pool.query(`SELECT img.id AS img_id, photo_url

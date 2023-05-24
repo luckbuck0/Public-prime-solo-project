@@ -1,50 +1,58 @@
-import {put,takeLatest} from "redux-saga/effects"
+import { put, takeLatest } from "redux-saga/effects"
 import axios from "axios"
 
-function*  postWorkspace (action){
-    try{
-        const results = yield axios.post('/api/workspaces',action.payload)
-        yield put({type:'FETCH_WORKSPACES'})
+//-----------------------------POST WORKSPACE SAGA--------------------------------------
+function* postWorkspace(action) {
+    try {
+        const results = yield axios.post('/api/workspaces', action.payload)
+        yield put({ type: 'FETCH_WORKSPACES' })
     } catch (error) {
         console.log('error in the post route in workspace.saga', error);
     }
 }
 
+
+//-----------------------------FETCH WORKSPACE SAGA--------------------------------------
 function* fetchWorkspaces() {
 
-    try{
+    try {
         const results = yield axios.get('/api/workspaces')
-        console.log('this is the results of workspace get route--->',results.data);
-        yield put ({type:'SET_WORKSPACES',payload:results.data})
+        console.log('this is the results of workspace get route--->', results.data);
+        yield put({ type: 'SET_WORKSPACES', payload: results.data })
     } catch (error) {
         console.log('error in the get route in saga workspaces--->', error);
     }
 }
 
-function* updateWorkplace ( action ) {
-    try {
-        console.log('this is action payload',action.payload);
-    const response = yield axios.put('/api/workspaces/:id',action.payload)
-    yield put({type:'FETCH_WORKSPACES'})
-    } catch (error)  {
-        console.log('thier is a error in the updateworkplace function in workplace saga--->',error);
-    }
-} 
+//-----------------------------UPDATE WORKSPACESAGA--------------------------------------
 
-function* deleteWorkplace ( action ) {
-    try {   console.log('this is action.payload id', action.payload);
-        yield axios.delete(`/api/workspaces/${action.payload.id}`,)
-        yield put({type:'FETCH_WORKSPACES'})
+function* updateWorkSpace(action) {
+    try {
+        console.log('this is action payload', action.payload);
+        const response = yield axios.put('/api/workspaces/:id', action.payload)
+        yield put({ type: 'FETCH_WORKSPACES' })
     } catch (error) {
-        console.log('error in the delete route in workpspace',error);
+        console.log('thier is a error in the updateworkplace function in workplace saga--->', error);
     }
-  
+}
+
+//-----------------------------DELETE WORKSPACE SAGA--------------------------------------
+
+function* deleteWorkSpace(action) {
+    try {
+        console.log('this is action.payload id', action.payload);
+        yield axios.delete(`/api/workspaces/${action.payload.id}`,)
+        yield put({ type: 'FETCH_WORKSPACES' })
+    } catch (error) {
+        console.log('error in the delete route in workpspace', error);
+    }
+
 
 }
 
-export default function* workplacesSaga(){
-    yield takeLatest('ADD_WORKSPACES',postWorkspace)
+export default function* workplacesSaga() {
+    yield takeLatest('ADD_WORKSPACES', postWorkspace)
     yield takeLatest('FETCH_WORKSPACES', fetchWorkspaces)
-    yield takeLatest('UPDATE_WORKPLACE',updateWorkplace)
-    yield takeLatest('DELETE_WORKSPACE', deleteWorkplace)
+    yield takeLatest('UPDATE_WORKPLACE', updateWorkSpace)
+    yield takeLatest('DELETE_WORKSPACE', deleteWorkSpace)
 }

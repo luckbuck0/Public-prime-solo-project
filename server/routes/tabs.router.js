@@ -5,6 +5,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 const router = express.Router()
 
+//-----------------------------POST ROUTE TABS--------------------------------------
 router.post('/', rejectUnauthenticated, (req,res) => {
     
     const name = req.body.name;
@@ -30,6 +31,7 @@ router.post('/', rejectUnauthenticated, (req,res) => {
     })
 })
 
+//-----------------------------GET ROUTE TABS--------------------------------------
 router.get('/',rejectUnauthenticated, (req,res) =>{
 
     let workplaceId=6
