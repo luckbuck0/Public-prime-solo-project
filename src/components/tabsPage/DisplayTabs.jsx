@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useState,useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 export default function DisplayTabs (props) {
 
@@ -8,32 +8,64 @@ export default function DisplayTabs (props) {
     const [url,setUrl] = useState('');
     const [photo,setPhoto] = useState('');
     const [notes,setNotes] = useState('')
-
+const editTab = useSelector(store => store.editTab)
     const tabs =props.tabs
     const workSpaceId= props.workSpaceId
-
+    console.log('this is tabs.id--->',tabs.id);
     console.log('this is workSpaceId-->',workSpaceId);
     
     const dispatch = useDispatch()
+    useEffect(() => {
+        const idToEdit = tabs.id;
+    
+        dispatch({
+          type: 'FETCH_TAB_TO_EDIT',
+          payload: idToEdit
+        })
+    
+      }, [])
 
+      console.log('this is edittab in client side',editTab);
+    const handleNameEdit = (event) => {
+        dispatch({
+            type:'MODIFY_NAME',
+            payload:event.target.value,
+        })
+    }
+
+    const handleUrlEdit = (event) => {
+        dispatch({
+            type:'MODIFY_URL',
+            payload:event.target.value,
+        })
+    }
+
+    const handlePhotoEdit = (event) => {
+        dispatch({
+            type:'MODIFY_PHOTO',
+            payload:event.target.value,
+        })
+    }
+
+
+    const handleNotesEdit = (event) => {
+        dispatch({
+            type:'MODIFY_NOTES',
+            payload:event.target.value,
+        })
+    }
+    
     const ifTrue = () => {
         setIsTrue(true)
         updateTabs()
     }
 
     const sendUpdate = () => {
-        if (name != '' && photo != '' && url != '') {
+        if (editTab.name != '' && editTab.photo != '' && editTab.url != '') {
             console.log('these are all the values', name, photo, url, notes);
             dispatch({
                 type: 'UPDATE_TABS',
-                payload: {
-                    id: workSpaceId,
-                    name: name,
-                    url: url,
-                    photo: photo,
-                    notes: notes
-                }
-
+                payload: editTab
             })
             setIsTrue(false)
             updateTabs()
@@ -52,30 +84,30 @@ export default function DisplayTabs (props) {
                 <input
         type="text"
         name="name"
-        placeholder={tabs.name}
+        
         required
-        value={name}
-        onChange={(event) => setName(event.target.value)}
+        value={editTab.name}
+        onChange={handleNameEdit}
       />
          <input
         type="text"
         name="name"
-        placeholder={tabs.url}
+       
         required
-        value={url}
-        onChange={(event) => setUrl(event.target.value)}
+        value={editTab.url}
+        onChange={handleUrlEdit}
       />
          <input
         type="text"
         name="name"
-        placeholder={tabs.photo}
+        
         required
-        value={photo}
-        onChange={(event) => setPhoto(event.target.value)}
+        value={editTab.photo}
+        onChange={handlePhotoEdit}
       />
       
       
-                    <textarea placeholder={tabs.notes} onChange={(event) => setNotes(event.target.value)} value={notes} ></textarea>
+                    <textarea onChange={handleNotesEdit} value={editTab.notes} ></textarea>
                     <button onClick={sendUpdate}>Submit</button> <br />
                 </div>
                 
