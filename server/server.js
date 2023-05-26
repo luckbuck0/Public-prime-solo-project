@@ -18,7 +18,7 @@ const workspace = require('../server/routes/workspace.routes')
 
 //Route to the tabs
 const tabs = require('../server/routes/tabs.router')
-
+const getTabs = require('../server/routes/tabs.Get')
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,6 +45,7 @@ app.use('/api/workspaces', workspace)
 // is just a variable we defined to hold the workspace.router
 app.use('/api/tabs', tabs)
 
+app.use('/api/get/', getTabs)
 
 // Serve static files
 app.use(express.static('build'));

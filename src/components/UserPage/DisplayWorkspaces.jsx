@@ -1,20 +1,28 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 export default function DisplaySpaces(props) {
     let workSpace = props.spaces
     const dispatch = useDispatch()
-    const [istrue, setIsTrue] = useState(false)
+    const history = useHistory()
 
+    const [istrue, setIsTrue] = useState(false)
+    
     const [workspaceName, setWorkspaceName] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('')
     const [notes, setNotes] = useState('')
 
+        
+
     const ifTrue = () => {
         setIsTrue(true)
         updateWorkspace()
+    }
+
+    const toWorkspace = () => {
+        history.push(`/tabs/${workSpace.id}`)
     }
 
     const deleteWorkspace = () => {
@@ -38,14 +46,10 @@ export default function DisplaySpaces(props) {
                     image_url: imageUrl,
                     notes: notes
                 }
-
             })
             setIsTrue(false)
             updateWorkspace()
         }
-
-
-
     }
 
     const updateWorkspace = () => {
@@ -83,7 +87,7 @@ export default function DisplaySpaces(props) {
             return (
                 <div className="workspaceContent">
                     <p>Name:{workSpace.name} Category:{workSpace.category}</p>
-                    <img className="displayImage" src={workSpace.image_url} alt="" />
+                    <img onClick={toWorkspace}  className="displayImage" src={workSpace.image_url} alt="" />
                     <p>{workSpace.notes}</p>
                     <span onClick={ifTrue} >🖊</span><span onClick={deleteWorkspace} className="text">🪣</span>
                 </div>
