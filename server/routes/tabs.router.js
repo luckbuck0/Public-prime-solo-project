@@ -35,31 +35,7 @@ router.post('/:id', rejectUnauthenticated, (req,res) => {
     })
 })
 
-// //-----------------------------GET ROUTE TABS--------------------------------------
-// router.get('/cd:/:id',rejectUnauthenticated, (req,res) =>{
-
-//     const userId= req.user.id
-//     const id = req.params.id;
-    
-   
-
-//     console.log('this is workspace id--->',id);
-  
-//     const queryValues = [id,userId]
-//     const queryText = `SELECT * FROM "tabs"
-//     WHERE workspace_id=$1
-//     AND user_id=$2;
-//     `;
-   
-
-//     pool.query(queryText,queryValues)
-//     .then((results) => {
-//         res.send(results.rows)
-//     }). catch ((error ) => {
-//         console.log('error in the tabs router file --->', error);
-//         res.sendStatus(500)
-//     })
-// })
+//-----------------------------GET ROUTE TABS--------------------------------------
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     const idToUpdate = req.params.id;
@@ -116,6 +92,25 @@ router.put('/',rejectUnauthenticated, (req,res) => {
     }). catch ((error) => {
         console.log('error in the put route in tabs --->',error);
     })
+})
+
+router.delete('/:id',rejectUnauthenticated, (req,res) => {
+  const sqlText = `DELETE FROM tabs
+  WHERE id = $1
+  AND user_id=$2;
+  `;
+  const tabsId = req.params.id
+  const userId = req.user.id
+  console.log('this is the tabs id--->',tabsId);
+  const sqlValues = [tabsId,userId]
+
+  pool.query(sqlText,sqlValues)
+  .then((results) => {
+    res.send(results.rows)
+  })
+  .catch ((error) => {
+    console.log('error in the delete route in tabs',error);
+  })
 })
 
 module.exports =router;

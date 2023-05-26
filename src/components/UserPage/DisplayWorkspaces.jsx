@@ -14,6 +14,8 @@ export default function DisplaySpaces(props) {
     const [selectedCategory, setSelectedCategory] = useState('')
     const [notes, setNotes] = useState('')
 
+        
+
     const ifTrue = () => {
         setIsTrue(true)
         updateWorkspace()
@@ -44,14 +46,10 @@ export default function DisplaySpaces(props) {
                     image_url: imageUrl,
                     notes: notes
                 }
-
             })
             setIsTrue(false)
             updateWorkspace()
         }
-
-
-
     }
 
     const updateWorkspace = () => {
@@ -87,9 +85,9 @@ export default function DisplaySpaces(props) {
             )
         } else {
             return (
-                <div onClick={toWorkspace} className="workspaceContent">
+                <div className="workspaceContent">
                     <p>Name:{workSpace.name} Category:{workSpace.category}</p>
-                    <img className="displayImage" src={workSpace.image_url} alt="" />
+                    <img onClick={toWorkspace}  className="displayImage" src={workSpace.image_url} alt="" />
                     <p>{workSpace.notes}</p>
                     <span onClick={ifTrue} >🖊</span><span onClick={deleteWorkspace} className="text">🪣</span>
                 </div>

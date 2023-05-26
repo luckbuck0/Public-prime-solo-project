@@ -9,6 +9,8 @@ let currentWorkspaceId = []
 function* postTabs(action) {
     let id = {
         id:action.payload.id}
+        console.log('this is the id',id);
+        console.log('this is the action.payload-->',action.payload);
     try {
         const results = yield axios.post(`/api/tabs/${action.payload.id}`,action.payload)
         yield put({ type: 'FETCH_TABS', payload: id})
@@ -64,6 +66,17 @@ function* editTab ( action ) {
     }
 } 
 
+function* deleteTabs (action ) {
+console.log('this is the id--->',action.payload.id);
+console.log('this is the workspaces id-->',action.payload.workSpaceId);
+    try {
+        yield axios.delete(`/api/tabs/${action.payload.id}`)
+        yield put ({type:'FETCH_TABS',payload:action.payload.workSpaceId})
+    } catch (error) {
+        console.log('their is a error in the delete route in tabs',error);
+    }
+}
+
 
 // used to listen to all the dispatches on client side tabs.jsx file and run corresponding
 // functions
@@ -72,4 +85,5 @@ export default function* tabsSaga() {
     yield takeLatest('FETCH_TABS', fetchTabs)
     yield takeLatest('UPDATE_TABS',updateTabs)
     yield takeLatest('FETCH_TAB_TO_EDIT',editTab)
+    yield takeLatest('DELETE_TABS',deleteTabs)
 }

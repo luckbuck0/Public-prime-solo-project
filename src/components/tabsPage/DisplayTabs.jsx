@@ -71,8 +71,16 @@ const editTab = useSelector(store => store.editTab)
             updateTabs()
         }
 
+    }
 
-
+    const deleteTabs = () => {
+        dispatch({
+            type: 'DELETE_TABS',
+            payload: {
+                id:tabs.id,
+                workSpaceId:workSpaceId
+            }
+        })
     }
 
 
@@ -122,7 +130,7 @@ const editTab = useSelector(store => store.editTab)
                 <p>Url: <br />{tabs.url}</p>
                 <img className="displayImage" src={tabs.photo} alt="" />
                 <p>Notes <br />{tabs.notes}</p>
-                <span onClick={ifTrue} >🖊</span><span  className="text">🪣</span>
+                <span onClick={ifTrue} >🖊</span><span onClick={deleteTabs}  className="text">🪣</span>
             </div>
             )
         }
