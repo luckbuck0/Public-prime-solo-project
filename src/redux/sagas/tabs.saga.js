@@ -12,7 +12,7 @@ function* postTabs(action) {
         console.log('this is the id',id);
         console.log('this is the action.payload-->',action.payload);
     try {
-        const results = yield axios.post(`/api/tabs/${action.payload.id}`,action.payload)
+        const results = yield axios.post(`/api/tabs`,action.payload)
         yield put({ type: 'FETCH_TABS', payload: id})
     } catch (error) {
         console.log('error in the tabs saga post route', error);
@@ -31,6 +31,7 @@ function* fetchTabs(action) {
         console.log('this is action.payload.workSpaceId',action.payload);
         console.log('this is the results of tabs get route--->', results.data);
         yield put({ type: 'SET_TABS', payload: results.data })
+        console.log('this is result data',results.data);
     } catch (error) {
         console.log('error in the get route in tabs saga', error);
     }
@@ -57,10 +58,11 @@ function* editTab ( action ) {
 
     console.log('this is action payload in saga edit tabs function--->',action.payload);
     try {
-    const response = yield axios.get(`/api/tabs/${tabIdToEdit}`,)
+    const response = yield axios.get(`/api/get/${action.payload}`,)
     const tabToEdit = response.data
     console.log('this is the tabtoedit in edit tab function in saga-->',tabToEdit);
     yield put({type:'SET_EDITED_TABS',payload:tabToEdit})
+    console.log('this is tab to edit in saga edit tab',tabToEdit);
     } catch (error) {
         console.log('error in edit tabs in tabs.saga file--->',error);
     }

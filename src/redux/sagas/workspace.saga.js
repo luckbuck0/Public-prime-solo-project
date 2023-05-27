@@ -16,7 +16,7 @@ function* postWorkspace(action) {
 function* fetchWorkspaces() {
 
     try {
-        const results = yield axios.get('/api/workspaces')
+        const results = yield axios.get('/api/workspaces/:id')
         console.log('this is the results of workspace get route--->', results.data);
         yield put({ type: 'SET_WORKSPACES', payload: results.data })
     } catch (error) {
@@ -28,7 +28,7 @@ function* fetchWorkspaces() {
 
 function* updateWorkSpace(action) {
     try {
-        console.log('this is action payload', action.payload);
+        console.log('this is action payload in workspaces ', action.payload);
         const response = yield axios.put('/api/workspaces/:id', action.payload)
         yield put({ type: 'FETCH_WORKSPACES' })
     } catch (error) {
@@ -46,8 +46,17 @@ function* deleteWorkSpace(action) {
     } catch (error) {
         console.log('error in the delete route in workpspace', error);
     }
+}
 
+function* editWorkspace (action) {
 
+  try { const response = yield axios.get(`api/workspaces/get/${action.payload.id}`)
+    console.log('this is action payload in edit-->', action.payload);
+    const workplaceToEdit = response.data
+    yield put({type: 'SET_EDITED_WORKSPACES', payload:workplaceToEdit})
+} catch (error) {
+    console.log('error in edit workspace in saga-->',error);
+}
 }
 
 export default function* workplacesSaga() {
@@ -55,4 +64,5 @@ export default function* workplacesSaga() {
     yield takeLatest('FETCH_WORKSPACES', fetchWorkspaces)
     yield takeLatest('UPDATE_WORKPLACE', updateWorkSpace)
     yield takeLatest('DELETE_WORKSPACE', deleteWorkSpace)
+    yield takeLatest('FETCH_WORKSPACE_TO_EDIT', editWorkspace)
 }

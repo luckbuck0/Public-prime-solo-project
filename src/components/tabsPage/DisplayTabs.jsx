@@ -15,15 +15,19 @@ const editTab = useSelector(store => store.editTab)
     console.log('this is workSpaceId-->',workSpaceId);
     
     const dispatch = useDispatch()
-    useEffect(() => {
-        const idToEdit = tabs.id;
-    
-        dispatch({
-          type: 'FETCH_TAB_TO_EDIT',
-          payload: idToEdit
-        })
-    
-      }, [])
+   
+
+      function tabToEdit (tabId) {
+        useEffect(() => {
+            const idToEdit = tabs.id;
+        
+            dispatch({
+              type: 'FETCH_TAB_TO_EDIT',
+              payload: workSpaceId
+            })
+        
+          }, [])
+      }
 
       console.log('this is edittab in client side',editTab);
     const handleNameEdit = (event) => {

@@ -8,13 +8,13 @@ const router = express.Router()
 
 
 //-----------------------------POST ROUTE TABS--------------------------------------
-router.post('/:id', rejectUnauthenticated, (req,res) => {
+router.post('/', rejectUnauthenticated, (req,res) => {
     
     const name = req.body.name;
     const  url = req.body.url;
     const photo= req.body.photo;
     const notes=req.body.notes
-    const workspaceId=req.params.id;
+    const workspaceId=req.body.id;
     const userId= req.user.id
     console.log('this is user id and workspace id--->',userId,workspaceId);
     const sqlText = `
@@ -38,17 +38,17 @@ router.post('/:id', rejectUnauthenticated, (req,res) => {
 //-----------------------------GET ROUTE TABS--------------------------------------
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-    const idToUpdate = req.params.id;
+    const idToGet = req.params.id;
     const userId = req.user.id;
 
-  console.log('this is the params in get route to edit',idToUpdate,userId);
+  console.log('this is the params in get route to get',idToGet,userId);
     const sqlQuery = `
     SELECT * FROM "tabs"
-      WHERE "id"=$1
+      WHERE "workspace_id"=$1
         AND "user_id"=$2;
     `
   
-    const sqlValues = [idToUpdate, userId];
+    const sqlValues = [idToGet, userId];
   
     pool.query(sqlQuery, sqlValues)
       .then((dbRes) => {

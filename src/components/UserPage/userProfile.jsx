@@ -35,18 +35,18 @@ export default function UserProfile() {
                             name="name"
                             placeholder='name'
                             required
-                            value={workspaceName}
+                            
                             onChange={(event) => setWorkspaceName(event.target.value)} /> <br />
                         <input
                             type="text"
                             name="name"
                             placeholder='image_url'
                             required
-                            value={imageUrl}
+                           
                             onChange={(event) => setImageUrl(event.target.value)} /> <br />
-                        <textarea onChange={(event) => setNotes(event.target.value)} value={notes} ></textarea>
+                        <textarea onChange={(event) => setNotes(event.target.value)}  ></textarea>
                     </div>
-                    <select name="Category" id="category" value={selectedCategory} onChange={() => setSelectedCategory(event.target.value)}>
+                    <select name="Category" id="category"  onChange={() => setSelectedCategory(event.target.value)}>
                         <option value="">Select an option</option>
                         <option value="Graphic Design">Graphic Design</option>
                         <option value="Coding">Coding</option>
@@ -75,7 +75,7 @@ export default function UserProfile() {
                     workspaceName: workspaceName,
                     imageUrl: imageUrl,
                     notes: notes,
-                    selectedCategory: selectedCategory
+                    category: selectedCategory
                 }
             })
             setIsTrue(false)

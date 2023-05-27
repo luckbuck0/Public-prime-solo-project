@@ -1,12 +1,12 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useState,useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 export default function DisplaySpaces(props) {
     let workSpace = props.spaces
     const dispatch = useDispatch()
     const history = useHistory()
-
+console.log('this is workspace id in the display spaces-->',workSpace.id);
     const [istrue, setIsTrue] = useState(false)
     
     const [workspaceName, setWorkspaceName] = useState('');
@@ -14,11 +14,48 @@ export default function DisplaySpaces(props) {
     const [selectedCategory, setSelectedCategory] = useState('')
     const [notes, setNotes] = useState('')
 
-        
+    useEffect(() => {
+        const idToEdit = workSpace.id;
+    
+        dispatch({
+          type: 'FETCH_WORKSPACE_TO_EDIT',
+          payload: {
+            id:idToEdit
+        }
+        })
+    
+      }, [])
 
     const ifTrue = () => {
         setIsTrue(true)
         updateWorkspace()
+    }
+
+    const editWorkspace= useSelector(store => store.editWorkspace)
+console.log('this is edit workspace in client side--->',editWorkspace);
+    const handleNameEdit = (event) => {
+        dispatch({
+            type:'MODIFY_NAME',
+            payload:event.target.value,
+        })
+    }
+    const handleImageEdit = (event) => {
+        dispatch({
+            type:'MODIFY_IMAGE',
+            payload:event.target.value,
+        })
+    }
+    const handleNotesEdit = (event) => {
+        dispatch({
+            type:'MODIFY_NOTES',
+            payload:event.target.value,
+        })
+    }
+    const handleCategoryEdit = (event) => {
+        dispatch({
+            type:'MODIFY_CATEGORY',
+            payload:event.target.value,
+        })
     }
 
     const toWorkspace = () => {
@@ -35,17 +72,12 @@ export default function DisplaySpaces(props) {
     }
 
     const sendUpdate = () => {
-        if (workspaceName != '' && selectedCategory != '' && imageUrl != '') {
+        if (editWorkspace.name != '' && editWorkspace.category != '' && editWorkspace.image_url != '') {
             console.log('these are all the values', workspaceName, selectedCategory, imageUrl, notes);
             dispatch({
                 type: 'UPDATE_WORKPLACE',
-                payload: {
-                    id: workSpace.id,
-                    name: workspaceName,
-                    category: selectedCategory,
-                    image_url: imageUrl,
-                    notes: notes
-                }
+                payload: editWorkspace
+                
             })
             setIsTrue(false)
             updateWorkspace()
@@ -60,21 +92,21 @@ export default function DisplaySpaces(props) {
                         <input
                             type="text"
                             name="name"
-                            placeholder={workSpace.name}
+                           
                             required
-                            value={workspaceName}
-                            onChange={(event) => setWorkspaceName(event.target.value)} /> <br />
+                            value={editWorkspace.name}
+                            onChange={handleNameEdit} /> <br />
                         <input
                             type="text"
                             name="name"
-                            placeholder={workSpace.image_url}
+                           
                             required
-                            value={imageUrl}
-                            onChange={(event) => setImageUrl(event.target.value)} /> <br />
-                        <textarea onChange={(event) => setNotes(event.target.value)} placeholder={workSpace.notes} value={notes} ></textarea>
+                            value={editWorkspace.image_url}
+                            onChange={handleImageEdit} /> <br />
+                        <textarea onChange={handleNotesEdit}  value={editWorkspace.notes} ></textarea>
                     </div>
-                    <select name="Category" placeholder={workSpace.category} id="category" value={selectedCategory} onChange={() => setSelectedCategory(event.target.value)}>
-                        <option value="">Select an option</option>
+                    <select onChange={handleCategoryEdit}  name="Category"  id="category" >
+                        <option >{editWorkspace.category}</option>
                         <option value="Graphic Design">Graphic Design</option>
                         <option value="Coding">Coding</option>
                         <option value="Architecture">Architecture</option>

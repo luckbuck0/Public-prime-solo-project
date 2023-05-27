@@ -20,7 +20,7 @@ export default function TabsPage() {
 
     const params = useParams()
     const workSpaceId= params.id
-    console.log('this is work space id --->',workSpaceId);
+    console.log('this is work space ids --->',workSpaceId);
     const dispatch= useDispatch();
 
     const setTrue = () => {

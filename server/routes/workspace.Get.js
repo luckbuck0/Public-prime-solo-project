@@ -7,15 +7,9 @@ const router = express.Router()
 
 
 let currentWorkspaceId = []
-function current(currentWorkspaceId,id){
-    if (currentWorkspaceId.length ===0){
-        currentWorkspaceId.push(id)
-    } else {
-        currentWorkspaceId.length=0
-        currentWorkspaceId.push(id)
-    }
+if (currentWorkspaceId<2){
+    currentWorkspaceId.shift()
 }
-
 //-----------------------------GET ROUTE TABS--------------------------------------
 router.get('/:id',rejectUnauthenticated, (req,res) =>{
 
@@ -23,14 +17,13 @@ router.get('/:id',rejectUnauthenticated, (req,res) =>{
     const id = req.params.id;
     currentWorkspaceId.push(id)
     
-    current(currentWorkspaceId,id)
    
 
-    console.log('this is current workspaces id--->',currentWorkspaceId,userId);
+    console.log('this is workspace id--->',currentWorkspaceId[0]);
   
-    const queryValues = [id,userId]
-    const queryText = `SELECT * FROM "tabs"
-    WHERE workspace_id=$1
+    const queryValues = [currentWorkspaceId[0],userId]
+    const queryText = `SELECT * FROM "workspaces"
+    WHERE id=$1
     AND user_id=$2;
     `;
    
@@ -38,7 +31,6 @@ router.get('/:id',rejectUnauthenticated, (req,res) =>{
     pool.query(queryText,queryValues)
     .then((results) => {
         res.send(results.rows)
-        console.log('this is results.rows in tab get ',results.rows);
     }). catch ((error ) => {
         console.log('error in the tabs router file --->', error);
         res.sendStatus(500)

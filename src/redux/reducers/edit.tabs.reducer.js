@@ -1,7 +1,7 @@
 
 const editTab = (state={},action) => {
     if (action.type === 'SET_EDITED_TABS') {
-        return action.payload[0]
+        return action.payload
     } else if (action.type ==='MODIFY_NAME') {
         return {...state,name:action.payload}
     }

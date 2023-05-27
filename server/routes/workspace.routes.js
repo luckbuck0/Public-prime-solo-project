@@ -9,7 +9,7 @@ router.post('/',rejectUnauthenticated,(req,res) =>{
     const userId = req.user.id;
     const workspaceName= req.body.workspaceName;
     const imageUrl = req.body.imageUrl
-    const category = 'design'
+    const category = req.body.category
     const sqlText = `
         INSERT INTO workspaces
         (user_id,name,image_url,category)
@@ -29,7 +29,7 @@ router.post('/',rejectUnauthenticated,(req,res) =>{
     
 })
 
-router.get('/' ,rejectUnauthenticated, (req,res) => {
+router.get('/:id' ,rejectUnauthenticated, (req,res) => {
 
 const userId = req.user.id
   const  queryValues=[userId]
