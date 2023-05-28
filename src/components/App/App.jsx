@@ -20,6 +20,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import TabsPage from '../tabsPage/tabs';
+import EditWorkspace from '../UserPage/EditPage';
+import EditTabs from '../tabsPage/EditTabs';
 
 import './App.css';
 
@@ -67,6 +69,22 @@ function App() {
             path="/tabs/:id"
           >
             <TabsPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/edit/:id"
+          >
+            <EditWorkspace />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/EditTabs/:id"
+          >
+           <EditTabs/>
           </ProtectedRoute>
 
 

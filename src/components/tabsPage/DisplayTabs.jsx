@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 export default function DisplayTabs (props) {
-
+const history =useHistory()
     const [isTrue,setIsTrue]=useState(false)
     const [name,setName] = useState('');
     const [url,setUrl] = useState('');
@@ -59,7 +59,7 @@ export default function DisplayTabs (props) {
     
     const ifTrue = () => {
 
-       
+       history.push(`/EditTabs/${tabs.id}`)
             const idToEdit = tabs.id;
         
             dispatch({
