@@ -6,7 +6,7 @@ export default function DisplaySpaces(props) {
     let workSpace = props.spaces
     const dispatch = useDispatch()
     const history = useHistory()
-console.log('this is workspace id in the display spaces-->',workSpace.id);
+// console.log('this is workspace id in the display spaces-->',workSpace.id);
     const [istrue, setIsTrue] = useState(false)
     
     const [workspaceName, setWorkspaceName] = useState('');
@@ -19,20 +19,31 @@ console.log('this is workspace id in the display spaces-->',workSpace.id);
     
         dispatch({
           type: 'FETCH_WORKSPACE_TO_EDIT',
-          payload: {
-            id:idToEdit
-        }
+          payload: workSpace.id
+        
         })
     
       }, [])
 
+   
+
     const ifTrue = () => {
+        const idToEdit = workSpace.id;
+
+        console.log('this is the current workspace id-->',idToEdit);
+        dispatch({
+            type: 'FETCH_WORKSPACE_TO_EDIT',
+            payload: workSpace.id
+          })
         setIsTrue(true)
+       
         updateWorkspace()
+       
+       
     }
 
-    const editWorkspace= useSelector(store => store.editWorkspace)
-console.log('this is edit workspace in client side--->',editWorkspace);
+    
+// console.log('this is edit workspace in client side--->',editWorkspace);
     const handleNameEdit = (event) => {
         dispatch({
             type:'MODIFY_NAME',
@@ -61,7 +72,7 @@ console.log('this is edit workspace in client side--->',editWorkspace);
     const toWorkspace = () => {
         history.push(`/tabs/${workSpace.id}`)
     }
-
+    const editWorkspace= useSelector(store => store.editWorkspace)
     const deleteWorkspace = () => {
         dispatch({
             type: 'DELETE_WORKSPACE',
@@ -86,6 +97,7 @@ console.log('this is edit workspace in client side--->',editWorkspace);
 
     const updateWorkspace = () => {
         if (istrue == true) {
+           console.log('this is editworkspace in the update workspace function',editWorkspace.name); 
             return (
                 <div>
                     <div>

@@ -22,7 +22,10 @@ export default function TabsPage() {
     const workSpaceId= params.id
     console.log('this is work space ids --->',workSpaceId);
     const dispatch= useDispatch();
+    
+const editTab = useSelector(store => store.editTab)
 
+console.log('this is edit tab in the tabs.jsx file',editTab);
     const setTrue = () => {
       setIsTrue(true)
     }
@@ -53,6 +56,7 @@ export default function TabsPage() {
         })
       }, []);
 
+      console.log('this is tabs',tabs);
       function showTabs() {
         if (isTrue == true) {
             return (

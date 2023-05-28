@@ -41,7 +41,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     const idToGet = req.params.id;
     const userId = req.user.id;
 
-  console.log('this is the params in get route to get',idToGet,userId);
+  console.log('this is the params in get route to get',idToGet,userId,req.body);
     const sqlQuery = `
     SELECT * FROM "tabs"
       WHERE "workspace_id"=$1
@@ -49,10 +49,11 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     `
   
     const sqlValues = [idToGet, userId];
-  
+  console.log('this is sql values in tab.router-->',sqlValues);
     pool.query(sqlQuery, sqlValues)
       .then((dbRes) => {
         res.send(dbRes.rows)
+        console.log('this is the dbres.rows in get route',dbRes.rows);
       })
       .catch((dbErr) => {
         console.log('GET /api/tabs/:id fail:', dbErr);

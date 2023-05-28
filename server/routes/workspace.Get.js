@@ -19,9 +19,9 @@ router.get('/:id',rejectUnauthenticated, (req,res) =>{
     
    
 
-    console.log('this is workspace id--->',currentWorkspaceId[0]);
+    console.log('this is workspace id--->',id);
   
-    const queryValues = [currentWorkspaceId[0],userId]
+    const queryValues = [id,userId]
     const queryText = `SELECT * FROM "workspaces"
     WHERE id=$1
     AND user_id=$2;

@@ -8,27 +8,25 @@ export default function DisplayTabs (props) {
     const [url,setUrl] = useState('');
     const [photo,setPhoto] = useState('');
     const [notes,setNotes] = useState('')
-const editTab = useSelector(store => store.editTab)
+    const editTab = useSelector(store => store.editTab)
     const tabs =props.tabs
+    const [tab,setTab] = useState(tabs)
     const workSpaceId= props.workSpaceId
     console.log('this is tabs.id--->',tabs.id);
     console.log('this is workSpaceId-->',workSpaceId);
     
+    
     const dispatch = useDispatch()
-   
-
-      function tabToEdit (tabId) {
-        useEffect(() => {
-            const idToEdit = tabs.id;
-        
-            dispatch({
-              type: 'FETCH_TAB_TO_EDIT',
-              payload: workSpaceId
-            })
-        
-          }, [])
-      }
-
+    useEffect(() => {
+        const idToEdit = tabs.id;
+    
+        dispatch({
+          type: 'FETCH_TAB_TO_EDIT',
+          payload: idToEdit
+        })
+    
+      }, [])
+    
       console.log('this is edittab in client side',editTab);
     const handleNameEdit = (event) => {
         dispatch({
@@ -60,6 +58,16 @@ const editTab = useSelector(store => store.editTab)
     }
     
     const ifTrue = () => {
+
+       
+            const idToEdit = tabs.id;
+        
+            dispatch({
+              type: 'FETCH_TAB_TO_EDIT',
+              payload: idToEdit
+            })
+        
+       
         setIsTrue(true)
         updateTabs()
     }
@@ -97,7 +105,7 @@ const editTab = useSelector(store => store.editTab)
         type="text"
         name="name"
         
-        required
+       
         value={editTab.name}
         onChange={handleNameEdit}
       />
@@ -105,7 +113,7 @@ const editTab = useSelector(store => store.editTab)
         type="text"
         name="name"
        
-        required
+        
         value={editTab.url}
         onChange={handleUrlEdit}
       />
@@ -113,7 +121,7 @@ const editTab = useSelector(store => store.editTab)
         type="text"
         name="name"
         
-        required
+        
         value={editTab.photo}
         onChange={handlePhotoEdit}
       />

@@ -50,7 +50,7 @@ function* deleteWorkSpace(action) {
 
 function* editWorkspace (action) {
 
-  try { const response = yield axios.get(`api/workspaces/get/${action.payload.id}`)
+  try { const response = yield axios.get(`api/workspaces/get/${action.payload}`)
     console.log('this is action payload in edit-->', action.payload);
     const workplaceToEdit = response.data
     yield put({type: 'SET_EDITED_WORKSPACES', payload:workplaceToEdit})
