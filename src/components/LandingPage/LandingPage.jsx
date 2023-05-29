@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
-
+import LoginForm from '../LoginForm/LoginForm';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -11,16 +11,34 @@ function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
 
-//intitializing tools to use for dispatch
+  //intitializing tools to use for dispatch
 
 
   return (
     <div className="container">
       <h2>{heading}</h2>
+      <div className='frontPage'>
+        <LoginForm />
+          <div className='loginPage'>
+            
+            <p className='getOrganized'>GET <br /> ORGANIZED </p>
+            
+            <div className='buttonsFront'>
+            <button className='registrationButton'>
+              Login
+            </button>
+            <button className='LoginButton' >
+              Login
+            </button>
+            </div>
+
+          </div>
+        <RegisterForm />
+      </div>
 
       <div className="grid">
         <div className="grid-col grid-col_8">
-          <p>
+          {/* <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
             id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
             ut ex molestie blandit. Etiam et turpis sit amet risus mollis
@@ -50,14 +68,15 @@ function LandingPage() {
             sagittis neque id diam euismod, ut egestas felis ultricies. Nullam
             non fermentum mauris. Sed in enim ac turpis faucibus pretium in sit
             amet nisi.
-          </p>
+          </p> */}
         </div>
         <div className="grid-col grid-col_4">
-          <RegisterForm />
+
+
 
           <center>
             <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
+            <button className="btn btn_sizeSm">
               Login
             </button>
           </center>

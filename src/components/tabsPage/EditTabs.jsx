@@ -4,10 +4,17 @@ import { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function EditTabs() {
+
+
+//--------------IMPORTS AND USESELECTORS NEEDED FOR PAGE------------------
     const params = useParams()
+
     const dispatch = useDispatch()
     const history = useHistory()
     const editTab = useSelector(store => store.editTab)
+
+//-----------USE EFFECT TO GET SPECIFIC TAB USING USE PARAMS ID-------------
+
     useEffect(() => {
         const idToEdit = params.id;
 
@@ -17,6 +24,8 @@ export default function EditTabs() {
         })
 
     }, [])
+
+//------FUNCTIONS USED TO UPDATE THE VALUES OF EDITTAB REDUX VARIABLE-----
 
     const handleNameEdit = (event) => {
         dispatch({
@@ -38,14 +47,17 @@ export default function EditTabs() {
             payload: event.target.value,
         })
     }
-
-console.log('this is workspace id in the tabs edit-->',editTab.workspace_id);
+    
     const handleNotesEdit = (event) => {
         dispatch({
             type: 'MODIFY_NOTES',
             payload: event.target.value,
         })
     }
+
+
+//-------------UPDATE FUNCTION USED TO SEND UPDATED EDITTABS--------------------
+
     const sendUpdate = () => {
         if (editTab.name != '' && editTab.photo != '' && editTab.url != '') {
            
@@ -58,6 +70,7 @@ console.log('this is workspace id in the tabs edit-->',editTab.workspace_id);
         history.push(`/tabs/${editTab.workspace_id}`)
     }
 
+//--------------INPUT HTML THAT HAVE THE VALUES OF EDITTAB BASED ON NAME-----------
     return (
         <div >
             <div >

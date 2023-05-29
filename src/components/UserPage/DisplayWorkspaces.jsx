@@ -3,16 +3,23 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 export default function DisplaySpaces(props) {
+
+//---------------IMPORTS NEEDED FOR DISPLAY PAGE------------------------
+
     let workSpace = props.spaces
     const dispatch = useDispatch()
     const history = useHistory()
 // console.log('this is workspace id in the display spaces-->',workSpace.id);
     const [istrue, setIsTrue] = useState(false)
-    
+
+//---------------REDUX VARIABLES NEEDED FOR THIS PAGE------------------------
+
     const [workspaceName, setWorkspaceName] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('')
     const [notes, setNotes] = useState('')
+
+//---------------USE EFFECT USED TO RETRIEVE SPECIFIC WORKSPACE------------------------
 
     useEffect(() => {
         const idToEdit = workSpace.id;
@@ -26,6 +33,7 @@ export default function DisplaySpaces(props) {
       }, [])
 
    
+//---------------FUNCTION USED TO SEND USERS TO EDIT PAGE------------------------
 
     const ifTrue = () => {
         const idToEdit = workSpace.id;
@@ -42,7 +50,11 @@ export default function DisplaySpaces(props) {
        
     }
 
-    
+//---------------FUNCTION TO UPDATE REDUX VALUES------------------------
+
+// previously used to send updates to editWorkplace value but because
+// of bug stated in tabs it is now turned off.
+
 // // console.log('this is edit workspace in client side--->',editWorkspace);
 //     const handleNameEdit = (event) => {
 //         dispatch({
@@ -69,10 +81,15 @@ export default function DisplaySpaces(props) {
 //         })
 //     }
 
+//---------------FUNCTION TO SEND USER TO Tabs PAGE------------------------
+
     const toWorkspace = () => {
         history.push(`/tabs/${workSpace.id}`)
     }
     const editWorkspace= useSelector(store => store.editWorkspace)
+
+//---------------FUNCTION TO DELETE WORKSPACES------------------------
+
     const deleteWorkspace = () => {
         dispatch({
             type: 'DELETE_WORKSPACE',
@@ -81,6 +98,8 @@ export default function DisplaySpaces(props) {
             }
         })
     }
+
+//---------------FUNCTION TO DISPATCH THE UPDATED EDIT WORKSPACE TO SAGE------------------------
 
     const sendUpdate = () => {
         if (editWorkspace.name != '' && editWorkspace.category != '' && editWorkspace.image_url != '') {
@@ -94,6 +113,8 @@ export default function DisplaySpaces(props) {
             updateWorkspace()
         }
     }
+
+//---------------FUNCTION TO RENDER DOM BASED ON IF EDIT BUTTON WAS CLICKED------------------------
 
     // const updateWorkspace = () => {
     //     if (istrue == true) {
@@ -138,6 +159,8 @@ export default function DisplaySpaces(props) {
     //         )
     //     }
     // }
+
+//---------------RETURN THAT RETURNS THE ATTRIBUTES OF WORKSPACE IN HTML------------------------
 
     return (
         // updateWorkspace()

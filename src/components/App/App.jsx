@@ -43,6 +43,9 @@ function App() {
           <Redirect exact from="/" to="/home" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
+
+  //-----------------------------ABOUT PAGE ROUTE--------------------------------------
+
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
@@ -55,6 +58,9 @@ function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
+
+  //-----------------------------PROFILE PAGE ROUTE--------------------------------------
+
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
@@ -62,6 +68,7 @@ function App() {
           >
             <UserPage />
           </ProtectedRoute>
+  //-----------------------------TABS PAGE ROUTE--------------------------------------
 
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
@@ -70,6 +77,7 @@ function App() {
           >
             <TabsPage />
           </ProtectedRoute>
+  //-----------------------------EDITWORKSPACE ROUTE--------------------------------------
 
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
@@ -79,6 +87,8 @@ function App() {
             <EditWorkspace />
           </ProtectedRoute>
 
+  //-----------------------------EDITTABS ROUTE--------------------------------------
+
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
@@ -87,7 +97,7 @@ function App() {
            <EditTabs/>
           </ProtectedRoute>
 
-
+  //-----------------------------INFO PAGE ROUTE--------------------------------------
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -97,6 +107,8 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+  //-----------------------------LOGIN PAGE ROUTE--------------------------------------
+  
           <Route
             exact
             path="/login"
@@ -111,6 +123,8 @@ function App() {
             }
           </Route>
 
+  //-----------------------------REGISTRATION PAGE ROUTE--------------------------------------
+
           <Route
             exact
             path="/registration"
@@ -124,6 +138,8 @@ function App() {
               <RegisterPage />
             }
           </Route>
+
+  //-----------------------------HOME PAGE ROUTE--------------------------------------
 
           <Route
             exact

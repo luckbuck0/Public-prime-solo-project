@@ -1,8 +1,8 @@
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 //importing necessary tools to utilize dispatch
-import { useDispatch} from 'react-redux';
-import { useEffect,useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 import DisplayTabs from './DisplayTabs';
 
@@ -12,34 +12,37 @@ export default function TabsPage() {
 
     const tabs = useSelector((store) => store.tabs)
 
-    const [isTrue,setIsTrue]=useState(false)
-    const [name,setName] = useState('');
-    const [url,setUrl] = useState('');
-    const [photo,setPhoto] = useState('');
-    const [notes,setNotes] = useState('')
+//---------------REDUX VARIABLES TO CONTAIN INPUT HTML------------------------
 
+    const [isTrue, setIsTrue] = useState(false)
+    const [name, setName] = useState('');
+    const [url, setUrl] = useState('');
+    const [photo, setPhoto] = useState('');
+    const [notes, setNotes] = useState('')
+
+//---------------IMPORT VALUES NEEDED FOR TABS PAGE------------------------
     const params = useParams()
-    const workSpaceId= params.id
-    console.log('this is work space ids --->',workSpaceId);
-    const dispatch= useDispatch();
-    
-const editTab = useSelector(store => store.editTab)
+    const workSpaceId = params.id
+    const dispatch = useDispatch();
+    const editTab = useSelector(store => store.editTab)
 
-console.log('this is edit tab in the tabs.jsx file',editTab);
+    console.log('this is edit tab in the tabs.jsx file', editTab);
     const setTrue = () => {
-      setIsTrue(true)
+        setIsTrue(true)
     }
 
+//---------------FUNCTION TO DISPATCH REDUX VALUES TO SAGA------------------------
+
     const postTabs = () => {
-        if (name !='' && name!='' && url!='' && photo!=''){
+        if (name != '' && name != '' && url != '' && photo != '') {
             dispatch({
                 type: 'POST_TABS',
                 payload: {
-                    name:name,
+                    name: name,
                     url: url,
-                    photo:photo,
-                    notes:notes,
-                    id:workSpaceId
+                    photo: photo,
+                    notes: notes,
+                    id: workSpaceId
                 }
             })
         }
@@ -47,52 +50,55 @@ console.log('this is edit tab in the tabs.jsx file',editTab);
         showTabs()
     }
 
-    useEffect(() =>{
+//---------------USE EFFECT TO RETRIEVE ALL TABS NEEDED------------------------
+    
+    useEffect(() => {
         dispatch({
-          type: 'FETCH_TABS',
-          payload: {
-            id:workSpaceId
-          }
+            type: 'FETCH_TABS',
+            payload: {
+                id: workSpaceId
+            }
         })
-      }, []);
+    }, []);
 
-      console.log('this is tabs',tabs);
-      function showTabs() {
+//---------------FUNCTION TO EVENT DELEGATE THE PLUS BUTTON BEING CLICK------------------------
+
+    function showTabs() {
         if (isTrue == true) {
             return (
                 <div >
                     <div >
-                    <input
-            type="text"
-            name="name"
-            placeholder='name'
-            required
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
-             <input
-            type="text"
-            name="name"
-            placeholder='url'
-            required
-            value={url}
-            onChange={(event) => setUrl(event.target.value)}
-          />
-             <input
-            type="text"
-            name="name"
-            placeholder='photo_url'
-            required
-            value={photo}
-            onChange={(event) => setPhoto(event.target.value)}
-          />
-          
-          
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder='name'
+                            required
+                            value={name}
+                            onChange={(event) => setName(event.target.value)}
+                        />
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder='url'
+                            required
+                            value={url}
+                            onChange={(event) => setUrl(event.target.value)}
+                        />
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder='photo_url'
+                            required
+                            value={photo}
+                            onChange={(event) => setPhoto(event.target.value)}
+                        />
+
+
                         <textarea onChange={(event) => setNotes(event.target.value)} value={notes} ></textarea>
                         <button onClick={postTabs}>Submit</button> <br />
                     </div>
-                    
-                    
+
+
 
                 </div>
             );
@@ -104,9 +110,11 @@ console.log('this is edit tab in the tabs.jsx file',editTab);
         }
     }
 
+//---------RETURN THAT CONTAINS MAP THAT PASSES INDIVIDUAL TABS INTO A COMPONENT------------------
+
     return (
         <div>
-            
+
             {
                 tabs.map((tab) => {
                     return (
@@ -120,8 +128,8 @@ console.log('this is edit tab in the tabs.jsx file',editTab);
                     )
                 })
             }
-           {showTabs()}
-          
+            {showTabs()}
+
         </div>
     )
 }

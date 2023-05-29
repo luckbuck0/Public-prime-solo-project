@@ -4,6 +4,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 const router = express.Router()
 
+//-----------------------------POST ROUTE TABS--------------------------------------
+
 router.post('/',rejectUnauthenticated,(req,res) =>{
 
     const userId = req.user.id;
@@ -28,6 +30,8 @@ router.post('/',rejectUnauthenticated,(req,res) =>{
     })
     
 })
+
+//-----------------------------GET ROUTE TABS--------------------------------------
 
 router.get('/:id' ,rejectUnauthenticated, (req,res) => {
 
@@ -96,4 +100,5 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
             console.log('error in the delete router in workspace routes', error);
         })
 })
+
 module.exports = router;

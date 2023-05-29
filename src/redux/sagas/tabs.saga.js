@@ -52,7 +52,7 @@ function* updateTabs ( action ) {
     }
 } 
 
-
+//-----------------------------EDIT TABS SAGA--------------------------------------
 function* editTab ( action ) {
     const tabIdToEdit =action.payload
     
@@ -67,6 +67,8 @@ function* editTab ( action ) {
     }
 } 
 
+//-----------------------------DELETE TABS SAGA--------------------------------------
+
 function* deleteTabs (action ) {
 console.log('this is the tab id--->',action.payload.id,action.payload.workSpaceId);
 
@@ -77,6 +79,8 @@ console.log('this is the tab id--->',action.payload.id,action.payload.workSpaceI
         console.log('their is a error in the delete route in tabs',error);
     }
 }
+
+//-----------------------------NEW TABS SAGA--------------------------------------
 
 function* FetchNewTabs (action) {
 
