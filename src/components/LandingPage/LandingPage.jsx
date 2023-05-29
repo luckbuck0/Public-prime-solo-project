@@ -3,6 +3,11 @@ import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 import LoginForm from '../LoginForm/LoginForm';
 
+import { Typography } from '@mui/joy';
+import Button from '@mui/joy/Button';
+
+
+
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 import { func } from 'prop-types';
@@ -15,21 +20,21 @@ function LandingPage() {
 
 
   return (
+    <div className='FirstPage'>
     <div className="container">
-      <h2>{heading}</h2>
+      {/* <h2>{heading}</h2> */}
       <div className='frontPage'>
         <LoginForm />
           <div className='loginPage'>
             
-            <p className='getOrganized'>GET <br /> ORGANIZED </p>
-            
+            {/* <p className='getOrganized'>GET <br /> ORGANIZED </p> */}
+            <Typography  sx={{ mb: 2 ,fontSize:50, textAlign:'center', ml:5, mr:5, mt:7,fontWeight:20}}  variant="h1" >
+              GET <br /> ORGANIZED 
+              </Typography>
             <div className='buttonsFront'>
-            <button className='registrationButton'>
-              Login
-            </button>
-            <button className='LoginButton' >
-              Login
-            </button>
+     
+            <Button variant='outlined' sx={{mt:30, ml:-21}} className='registrationButton'>Login</Button>
+            <Button variant='outlined' sx={{mt:30, ml:-25}} className='registrationButton'>Register</Button>
             </div>
 
           </div>
@@ -75,13 +80,36 @@ function LandingPage() {
 
 
           <center>
-            <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm">
-              Login
-            </button>
+            <Typography sx={{ mb: 2 , fontSize:30, textAlign:'center', ml:5, mr:5, mt:0}}>What We Offer</Typography>
+          <div className='offers'>
+         
+            <div className="offerPanel">
+            <img className='imgOffer' src="https://i.ibb.co/mSrrFzf/zentab3.png" alt="" srcset="" />
+            <Typography sx={{mt:-40, fontSize:25}}>Organization</Typography>
+            </div>
+
+            <div className="offerPanel">
+            <img className='imgOffer' src="https://i.ibb.co/YBvZJPW/zentab2.png" alt="" srcset="" />
+            <Typography sx={{mt:-40, fontSize:25}}>Organization</Typography>
+            </div>
+
+            <div className="offerPanel">
+            <img  src="https://i.ibb.co/WVVnQp2/10.png" alt="" srcset="" />
+            <Typography sx={{mt:-30, fontSize:25}}>Organization</Typography>
+            </div>
+          
+
+            
+  
+
+         
+           
+          </div>
+            
           </center>
         </div>
       </div>
+    </div>
     </div>
   );
 }

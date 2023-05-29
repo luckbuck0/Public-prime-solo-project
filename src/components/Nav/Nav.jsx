@@ -10,16 +10,17 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <h2 className="nav-title"><img className='logo' src="https://i.ibb.co/NnmwkJ5/zentab-Logo1.png" alt="" srcset="" /></h2>
       </Link>
       <div>
+      
         {/* If no user is logged in, show these links */}
-        {!user.id && (
+        {/* {!user.id && (
           // If there's no user, show login/registration links
           <Link className="navLink" to="/login">
             Login / Register
           </Link>
-        )}
+        )} */}
 
         {/* If a user is logged in, show these links */}
         {user.id && (
@@ -36,9 +37,9 @@ function Nav() {
           </>
         )}
 
-        <Link className="navLink" to="/about">
+        {/* <Link className="navLink" to="/about">
           About
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

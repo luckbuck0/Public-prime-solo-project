@@ -6,7 +6,15 @@ body,
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0px;
+  height: max-content;
+  
+  background-color: #ffb700 100%;
+  background-image: linear-gradient( #ff91009e 0%, #ffb700d4 100%);
+ 
+  background-size:contain;
+  
+  
+  
 }
 
 img {
@@ -18,9 +26,7 @@ img {
 Container
 -------------------------------------------------------------------------------- */
 
-.container {
-  padding: 20px;
-}
+
 
 /* --------------------------------------------------------------------------------
 Button
@@ -107,9 +113,11 @@ Form Treatment
   padding: 25px;
   height: 300px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  /* background-color: #fcfafa; */
   border-radius: 50px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+  background-image: linear-gradient(rgba(255, 141, 141, 1),rgba(33, 117, 195, 0.729));
+  text-align: center;
 }
 
 input {
@@ -166,11 +174,11 @@ input {
 .frontPage {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  margin-left: -70px;
 }
 
-input {
-    border-radius: 50px;
-}
+
 
 .getOrganized {
   font-size: 50px;
@@ -197,4 +205,66 @@ input {
 
 .LoginButton {
   margin-left: -200px;
+}
+
+.inputValues {
+  margin-top: -20px;
+
+}
+
+
+.textValues {
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+.textV {
+  margin-bottom: -2px;
+  border: none;
+}
+
+.inputV {
+  margin-top: 25px;
+  border: none;
+}
+
+.mInput {
+  justify-content: center;
+}
+
+input {
+  border-radius: 10px;
+  
+}
+
+.mainContainer {
+  margin-top: 30px;
+  
+ 
+}
+
+.offers {
+  display: flex;
+  flex-direction: row;
+}
+
+.imgOffer {
+  height: 350px;
+  width: 600px;
+  margin-top: -70px;
+}
+
+.offerPanel {
+  box-sizing: border-box;
+  width: 200px;
+  max-width: 100%;
+  padding: 0px;
+  height: 200px;
+  margin-top: 50px;
+  /* background-color: #fcfafa; */
+  border-radius: 50px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+  background-image: linear-gradient(rgba(255, 141, 141, 1),rgba(33, 117, 195, 0.729));
+  text-align: center;
+  margin-left: 100px;
 }
