@@ -1,3 +1,6 @@
+import { Button, Typography } from "@mui/joy"
+import { display } from '@mui/system';
+import { Box } from "@mui/material";
 import { useState,useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
@@ -164,11 +167,22 @@ export default function DisplaySpaces(props) {
 
     return (
         // updateWorkspace()
-        <div className="workspaceContent">
-        <p>Name:{workSpace.name} Category:{workSpace.category}</p>
-        <img onClick={toWorkspace}  className="displayImage" src={workSpace.image_url} alt="" />
-        <p>{workSpace.notes}</p>
-        <span onClick={ifTrue} >🖊</span><span onClick={deleteWorkspace} className="text">🪣</span>
+        <div >
+        <div className="workSpaceContainer" >
+            <div >
+                <br />
+            <Typography  color="primary" sx={{fontSize:15}} component='h3' > <p>{workSpace.name}</p> </Typography>
+            <Typography color="primary" sx={{fontSize:15}}  > {workSpace.category}</Typography>
+        <img className="displayWorkspace" onClick={toWorkspace} src={workSpace.image_url} alt="" />
+        <Typography color="primary" sx={{height:50, mt:2, fontSize:15, width:200, ml:3}} component="h4" className='notes'>{workSpace.notes}</Typography>
+        
+            </div>
+        
+        <Button variant="outlined" sx={{mt:3}} onClick={ifTrue} >🖊</Button><Button variant="outlined" sx={{ml:10}}  onClick={deleteWorkspace} className="text">❌</Button>
+    </div>
+    <div>
+        
+    </div>
     </div>
     )
 }

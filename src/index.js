@@ -27,7 +27,7 @@ const root = ReactDOM.createRoot(document.getElementById('react-root'));
 root.render(
   
   <React.StrictMode>
-    <Provider theme={theme} store={store}>
+    <Provider  store={store}>
       <App />
     </Provider> 
   </React.StrictMode>

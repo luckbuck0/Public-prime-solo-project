@@ -6,10 +6,10 @@ body,
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  height: max-content;
+  height: fit-content;
   
   background-color: #ffb700 100%;
-  background-image: linear-gradient( #ff91009e 0%, #ffb700d4 100%);
+  background-image: linear-gradient(90deg, #ff91009e 0%, #ffb700d4 100%);
  
   background-size:contain;
   
@@ -43,8 +43,7 @@ Button
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
-  width: 100px;
-  height: 60px;
+ 
   margin-top: 120px;
   margin-left: -100px;
 
@@ -108,17 +107,21 @@ Form Treatment
 
 .formPanel {
   box-sizing: border-box;
-  width: 200px;
+  width: 300px;
   max-width: 100%;
   padding: 25px;
-  height: 300px;
+  height: 650px;
   margin: 0 auto 20px;
+  margin-top: -80px;
   /* background-color: #fcfafa; */
   border-radius: 50px;
   /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
   background-image: linear-gradient(rgba(255, 141, 141, 1),rgba(33, 117, 195, 0.729));
   text-align: center;
+  justify-content: space-evenly;
+
 }
+
 
 input {
   margin: 5px;
@@ -126,25 +129,25 @@ input {
 }
 
 
-.profileArea {
-  display: flex;
-  flex-direction: row;
-}
-
-.profileImg {
-  height: 238px;
-  width: 238px;
-  margin-top: -50px;
-}
 
 .plusButton {
-  height: 200px;
-  width: 250px;
+  height: 350px;
+  width: 450px;
+  float: left;
 }
 
 .WorkSpaceDisplay {
   display: flex;
-  flex-direction: row;
+  flex-direction:row;
+  float: left;
+  justify-content: space-evenly;
+}
+
+.newWorkspace {
+  width: fit-content;
+  float: left;
+  margin-top: 40px;
+  margin-left: 15px;
 }
 
 .displayImage {
@@ -172,10 +175,11 @@ input {
 }
 
 .frontPage {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-left: -70px;
+  display:flex;
+  flex-direction:row;
+  justify-content:space-evenly;
+  margin-top: 15px;
+  padding-bottom: 140px;
 }
 
 
@@ -221,11 +225,13 @@ input {
 .textV {
   margin-bottom: -2px;
   border: none;
+  
 }
 
 .inputV {
   margin-top: 25px;
   border: none;
+  
 }
 
 .mInput {
@@ -239,19 +245,22 @@ input {
 
 .mainContainer {
   margin-top: 30px;
-  
- 
+  width: 400px;
 }
 
 .offers {
-  display: flex;
+  display: inline-block;
   flex-direction: row;
+  justify-content:space-evenly;
+  margin-right: 40px;
+  
 }
 
 .imgOffer {
-  height: 350px;
+  height: 300px;
   width: 600px;
   margin-top: -70px;
+   opacity: 80%;
 }
 
 .offerPanel {
@@ -260,11 +269,157 @@ input {
   max-width: 100%;
   padding: 0px;
   height: 200px;
-  margin-top: 50px;
+  margin-top: 0px;
   /* background-color: #fcfafa; */
   border-radius: 50px;
   /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
   background-image: linear-gradient(rgba(255, 141, 141, 1),rgba(33, 117, 195, 0.729));
   text-align: center;
-  margin-left: 100px;
+  margin-left: 10px;
+  opacity: 90%;
+ justify-content:left;
+ width: max-content;
+}
+
+.profileContainer {
+  box-sizing: border-box;
+  width: 300px;
+  
+  height:1000px;
+  /* background-color: #fcfafa; */
+  border-radius: 50px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+ background-image: linear-gradient(rgba(33, 117, 195, 0.929),#ffb700);
+  text-align: center;
+  margin-left: -10px;
+  margin-top: -15px;
+  opacity: 90%;
+ justify-content:left;
+ 
+}
+
+.imgContainer {
+  border-radius: 100%;
+  background-color: #444;
+  height: 150px;
+  width: 200px;
+
+  box-sizing: border-box;
+
+  
+  /* background-color: #fcfafa; */
+  border-radius: 15px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+  background-color: black;
+  text-align: center;
+  margin-left: 30px;
+  margin-top: 45px;
+  opacity: 90%;
+ justify-content:center;
+}
+
+.profileArea {
+  display: flex;
+  flex-direction: row;
+  background-image: linear-gradient(rgba(33, 117, 195, 0.829),rgba(255, 141, 141, 50));
+  margin: -10px;
+}
+
+.profileImg {
+  height: 170px;
+  width: 150px;
+  margin-top: -20px;
+}
+
+.imgOffe {
+  height: 250px;
+  width: 600px;
+  margin-top: -34px;
+  opacity: 90%;
+}
+
+.imgOffers {
+  height: 170px;
+  width: 600px;
+  opacity: 90%;
+}
+
+.imgprofile {
+  height: 400px;
+  width: 500px;
+  margin-top: -54px;
+  
+  opacity: 90%;
+}
+
+.grid {
+  margin-top: -40px;
+  justify-content: center;
+}
+
+
+.heroText {
+  font-family: Calibri, 'Trebuchet MS', sans-serif;
+  color: rgba(33, 117, 195, 80) ;
+}
+
+
+.workSpaceContainer {
+  box-sizing: border-box;
+  height: 400px;
+  width: 250px;
+  
+  /* background-color: #fcfafa; */
+  border-radius: 50px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+  background-color:#ffb700;
+  text-align: center;
+  
+  opacity: 80%;
+  margin-left: 50px;
+  margin-top: -15px;
+  
+  
+}
+
+.displayWorkspace {
+  width:200px;
+  height: 150px;
+  border-radius: 30px;
+  margin-top: 3px;
+}
+
+.cont {
+  box-sizing: border-box;
+  
+  
+  /* background-color: #fcfafa; */
+  border-radius: 50px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+  background-image: linear-gradient(rgba(33, 117, 195, 0.329),rgba(255, 141, 141, 50));
+  text-align: center;
+  
+  opacity: 90%;
+  
+}
+
+
+
+
+.newWorkspaceContainer {
+  box-sizing: border-box;
+  height: 400px;
+  width: 250px;
+  
+  /* background-color: #fcfafa; */
+  border-radius: 50px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+  background-color:#ffb700;
+  opacity: 80%;
+  text-align: center;
+  
+  opacity: 90%;
+ margin-left: 20px;
+  margin-top: 25px;
+  float: left;
 }

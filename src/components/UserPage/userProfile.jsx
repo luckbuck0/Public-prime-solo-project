@@ -21,7 +21,7 @@ export default function UserProfile() {
 // variable used to turn the value of setTrue to true in order to delegate renders
     const setTrue = () => {
         setIsTrue(true)
-
+        
     }
         //function used to render either the plus button or 
     //the inputs depending on value of isTrue
