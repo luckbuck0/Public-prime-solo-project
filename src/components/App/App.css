@@ -178,7 +178,7 @@ input {
   display:flex;
   flex-direction:row;
   justify-content:space-evenly;
-  margin-top: 15px;
+  margin-top: -180px;
   padding-bottom: 140px;
 }
 
@@ -422,4 +422,135 @@ input {
  margin-left: 20px;
   margin-top: 25px;
   float: left;
+}
+
+.editPage {
+  box-sizing: border-box;
+  height: 400px;
+  width: 250px;
+  
+  /* background-color: #fcfafa; */
+  border-radius: 50px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+  background-image: linear-gradient(rgba(33, 117, 195, 0.329),rgba(255, 141, 141, 50));
+  opacity: 80%;
+  text-align: center;
+  
+  opacity: 90%;
+ 
+  margin: auto;
+  margin-top: 40px;
+  width: 50%;
+
+  padding: 10px;
+  justify-content: center;
+}
+
+.editWorkspace {
+  width: fit-content;
+  float: left;
+  margin-top: -auto;
+  margin-left: 205px;
+  margin-top: 20px;
+}
+
+.logoEditPage {
+  height: 250px;
+  
+  color: #fff;
+  justify-content: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  margin-top: -50px;
+}
+
+.editPageContainer {
+  margin-top: -80px;
+}
+
+.tabsArea {
+  display: flex;
+  flex-direction: row;
+  height: 1000px;
+
+  background-image: linear-gradient(rgba(33, 117, 195, 0.829),rgba(255, 141, 141, 50));
+  margin: -10px;
+}
+
+.tabsImageContainer {
+
+  background-color: #444;
+  height: 150px;
+  width: 200px;
+
+  box-sizing: border-box;
+
+  
+  /* background-color: #fcfafa; */
+  border-radius: 15px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+  background-color: black;
+  text-align: center;
+  margin-left: 30px;
+  margin-top: 155px;
+  opacity: 90%;
+ justify-content:center;
+}
+
+.tabsProfileContainer {
+  box-sizing: border-box;
+  width: 250px;
+  
+  height:1000px;
+  /* background-color: #fcfafa; */
+  border-radius: 50px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+ background-image: linear-gradient(#ffb700,rgba(255, 255, 255, 0.23),rgba(33, 117, 195, 0.929));
+  text-align: center;
+  margin-left: -10px;
+  margin-top: -115px;
+  opacity: 90%;
+ justify-content:left;
+}
+
+.tabsContent {
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 150px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.displayTabs {
+  width:200px;
+  height: 150px;
+  border-radius: 30px;
+  margin-top: 7px;
+}
+
+.tabsContainer {
+  box-sizing: border-box;
+  height: 400px;
+  width: 250px;
+  
+  /* background-color: #fcfafa; */
+  border-radius: 50px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+  background-color:#ffb700;
+  text-align: center;
+  
+  opacity: 80%;
+  margin-left: 75px;
+  margin-top: 45px;
+}
+
+.loginArea {
+  display: flex;
+  flex-direction: row;
+}
+
+.loginImage {
+  margin-top: -150px;
 }

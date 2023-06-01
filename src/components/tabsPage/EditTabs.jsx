@@ -3,6 +3,14 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
+
+import { Typography } from '@mui/joy';
+import Button from '@mui/joy/Button';
+import Input from '@mui/joy/Input';
+import { Select } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Textarea from '@mui/joy/Textarea';
+
 export default function EditTabs() {
 
 
@@ -72,9 +80,12 @@ export default function EditTabs() {
 
 //--------------INPUT HTML THAT HAVE THE VALUES OF EDITTAB BASED ON NAME-----------
     return (
-        <div >
-            <div >
-                <input
+        <div>
+            <img className='logoEditPage' src="https://i.ibb.co/NnmwkJ5/zentab-Logo1.png" alt="" srcset="" />
+        <div className="editPageContainer">
+            <div className='editPage'>
+            <div className='editWorkspace' >
+                <Input
                     type="text"
                     name="name"
 
@@ -82,30 +93,36 @@ export default function EditTabs() {
                     value={editTab.name}
                     onChange={handleNameEdit}
                 />
-                <input
+                <Input
                     type="text"
                     name="name"
 
-
+                    sx={{mt:2}}
                     value={editTab.url}
                     onChange={handleUrlEdit}
                 />
-                <input
+                <Input
                     type="text"
                     name="name"
 
-
+                    sx={{mt:2}}
                     value={editTab.photo}
                     onChange={handlePhotoEdit}
                 />
 
 
-                <textarea onChange={handleNotesEdit} value={editTab.notes} ></textarea>
-                <button onClick={sendUpdate}>Submit</button> <br />
+                <Textarea
+                 onChange={handleNotesEdit} 
+                 value={editTab.notes} 
+                 sx={{mt:2}}
+                 ></Textarea>
+                <Button sx={{mt:2}} onClick={sendUpdate}>Submit</Button> <br />
             </div>
 
 
 
+        </div>
+        </div>
         </div>
     )
 }

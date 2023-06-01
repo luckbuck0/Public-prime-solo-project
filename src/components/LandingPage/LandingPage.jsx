@@ -193,20 +193,22 @@ const loginClicked = () => {
   return (
     <div className='FirstPage'>
     <div className="container">
+    <img className='logoEditPage' src="https://i.ibb.co/NnmwkJ5/zentab-Logo1.png" alt="" srcset="" />
       {/* <h2>{heading}</h2> */}
       <div className='frontPage'>
+        
        {
         displayLogin()
        }
           <div className='loginPage'>
             
             {/* <p className='getOrganized'>GET <br /> ORGANIZED </p> */}
-            <Typography color='primary' sx={{ mb: 2 ,fontSize:60, textAlign:'center', ml:5, mr:5, mt:0,fontWeight:10,  }}  variant="h1" >
+            <Typography color='primary' sx={{ mb: 2 ,fontSize:60, textAlign:'center', ml:5, mr:5, mt:8,fontWeight:10,  }}  variant="h1" >
                <p className='heroText'> THE FUTURE <br /> OF TAB <br /> MANAGEMENT</p>
               </Typography>
             <div className='buttonsFront'>
-            <Button onClick={registerClicked} variant='outlined' sx={{mt:30, ml:-25}} className='registrationButton'>Register</Button>
-            <Button  onClick={loginClicked} variant='outlined' sx={{mt:45, ml:-29}} className='loginButton'>Login</Button>
+            <Button onClick={registerClicked} variant='outlined' sx={{mt:40, ml:-29}} className='registrationButton'>Register</Button>
+            <Button  onClick={loginClicked} variant='outlined' sx={{mt:53, ml:-29}} className='loginButton'>Login</Button>
             
             </div>
            

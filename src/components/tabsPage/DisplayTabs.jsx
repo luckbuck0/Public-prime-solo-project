@@ -1,7 +1,99 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
+import LogOutButton from "../LogOutButton/LogOutButton";
+
+import { Typography } from '@mui/joy';
+import Button from '@mui/joy/Button';
+import Input from '@mui/joy/Input';
+import { Select } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Textarea from '@mui/joy/Textarea';
+import Link from '@mui/material/Link';
+
 export default function DisplayTabs(props) {
+
+    const [isTrue, setIsTrue] = useState(false)
+    const [name, setName] = useState('');
+    const [url, setUrl] = useState('');
+    const [photo, setPhoto] = useState('');
+    const [notes, setNotes] = useState('')
+
+    const setTrue = () => {
+        setIsTrue(true)
+    }
+
+    const postTabs = () => {
+        if (name != '' &&  url != '' && photo != '') {
+            dispatch({
+                type: 'POST_TABS',
+                payload: {
+                    name: name,
+                    url: url,
+                    photo: photo,
+                    notes: notes,
+                    id: workSpaceId
+                }
+            })
+        }
+        setIsTrue(false)
+        showTabs()
+    }
+
+    function showTabs() {
+        if (isTrue == true) {
+            return (
+                <div className='newWorkspaceContainer' >
+                    <div className='newWorkspace'  >
+                        <Input
+                            sx={{mt:2}}
+                            type="text"
+                            name="name"
+                            placeholder='Name'
+                            required
+                            value={name}
+                            onChange={(event) => setName(event.target.value)}
+                        />
+                        <Input
+                            sx={{mt:2}}
+                            type="text"
+                            name="name"
+                            placeholder='Web Url'
+                            required
+                            value={url}
+                            onChange={(event) => setUrl(event.target.value)}
+                        />
+                        <Input
+                            sx={{mt:2}}
+                            type="text"
+                            name="name"
+                            placeholder='Photo Url'
+                            required
+                            value={photo}
+                            onChange={(event) => setPhoto(event.target.value)}
+                        />
+
+
+                        <Textarea 
+                        placeholder="Notes" 
+                        onChange={(event) => setNotes(event.target.value)} 
+                        value={notes} 
+                        sx={{mt:2}}
+                        >
+
+                        </Textarea>
+                        <Button sx={{mt:2}} onClick={postTabs}>Submit</Button> <br />
+                    </div>
+
+
+
+                </div>
+            );
+        }
+       
+    }
+
     const history = useHistory()
     // const [isTrue,setIsTrue]=useState(false)
     // const [name,setName] = useState('');
@@ -15,11 +107,16 @@ export default function DisplayTabs(props) {
     const tabs = props.tabs
     const [tab, setTab] = useState(tabs)
     const workSpaceId = props.workSpaceId
+    const img= props.images[0]
+    const user = props.user
     console.log('this is tabs.id--->', tabs.id);
     console.log('this is workSpaceId-->', workSpaceId);
-
+    console.log('this is images-->', img);
 
     const dispatch = useDispatch()
+
+    
+
     useEffect(() => {
         const idToEdit = tabs.id;
 
@@ -170,13 +267,20 @@ export default function DisplayTabs(props) {
 //---------------RETURN THAT RETUNS THE TABS ATTRIBUTES------------------------
 
     return (
-        // updateTabs()
-        <div className="workspaceContent">
-            <p>Name:{tabs.name} </p>
-            <p>Url: <br />{tabs.url}</p>
-            <img className="displayImage" src={tabs.photo} alt="" />
-            <p>Notes <br />{tabs.notes}</p>
-            <span onClick={ifTrue} >🖊</span><span onClick={deleteTabs} className="text">🪣</span>
+        // updateTabs() 
+      
+        <div className="tabsContainer">
+            <div>
+            <Typography color="primary" sx={{fontSize:15,mt:2}} component='h3'>{tabs.name} </Typography>
+            <Link target="_blank" rel="noreferrer" href={tabs.url}  underline="none" color="primary" sx={{fontSize:15,mt:2}} > <br />{tabs.url}</Link> 
+            <img className="displayTabs" src={tabs.photo} alt="" />
+            <Typography color="primary" sx={{height:50, mt:2, fontSize:15, width:200, ml:3}} component="h4" className='notes'>Notes <br />{tabs.notes}</Typography>
+            <Button variant="outlined" sx={{mt:7}} onClick={ifTrue} >🖊</Button><Button variant="outlined" sx={{ml:10}}   className="text" onClick={deleteTabs} >❌</Button>
+        </div>
+       
+        {
+            showTabs()
+        }
         </div>
     )
 }

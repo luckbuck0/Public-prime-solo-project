@@ -103,7 +103,7 @@ function UserPage() {
             <MenuItem >Architecture<MenuItem>
             <MenuItem>Animations<MenuItem>
           <Select> */}
-            <Select sx={{height:30, mr:3}} >
+            <Select sx={{height:30, mr:3}} onChange={() => setSelectedCategory(event.target.value)} >
     <MenuItem value="Architecturw">Architecture</MenuItem>
     <MenuItem value="Design">Design</MenuItem>
     <MenuItem value="Coding">Coding</MenuItem>
@@ -155,7 +155,8 @@ function UserPage() {
                   <div className='imgContainer'>
                     <img className='profileImg' src={img.photo_url} alt="fd" ></img>
                     <Typography color='primary' sx={{ fontSize: 30, textAlign: 'center', mt: -2, ml: 0, fontWeight: 'bold' }}> <p className='welcomeText'> WELCOME<br /> BACK <br />{user.username.toUpperCase()}!</p></Typography>
-                    <Button onClick={setTrue}>ADD NEW WORKSPACE</Button>
+                    <Button variant='outlined' onClick={setTrue}>ADD NEW WORKSPACE</Button>
+                    <Button sx={{mt:2}} variant='outlined' >CONTACT</Button> <br />
                     <LogOutButton className="btn" />
                   </div>
                 </div>
