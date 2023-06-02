@@ -118,7 +118,7 @@ const editWorkspace= useSelector(store => store.editWorkspace)
       <Textarea  minRows={3} onChange={handleNotesEdit} value={editWorkspace.notes}   >{editWorkspace.notes}</Textarea>
       <Select sx={{height:30, mr:3}}  onChange={handleCategoryEdit}   id="category"  >
     <MenuItem value={editWorkspace.category}>{editWorkspace.category}</MenuItem> 
-   <MenuItem value="Architecturw">Architecture</MenuItem>
+   <MenuItem value="Architecture">Architecture</MenuItem>
     <MenuItem value="Design">Design</MenuItem>
     <MenuItem value="Coding">Coding</MenuItem>
     <MenuItem value="Animation">Animation</MenuItem>

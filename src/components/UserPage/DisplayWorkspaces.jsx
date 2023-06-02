@@ -170,6 +170,7 @@ export default function DisplaySpaces(props) {
     return (
         // updateWorkspace()
         <div >
+
         <div className="workSpaceContainer" >
             <div >
                 <br />

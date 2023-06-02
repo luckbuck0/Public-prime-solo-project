@@ -52,8 +52,10 @@ export default function TabsPage() {
       const img = useSelector((store) => store.images)
 
     console.log('this is edit tab in the tabs.jsx file', editTab);
+
     const setTrue = () => {
         setIsTrue(true)
+        showTabs()
     }
     
 
@@ -87,18 +89,23 @@ export default function TabsPage() {
         })
     }, []);
 
+    const setFalse = () => {
+        setIsTrue(false)
+        showTabs()
+      }
 //---------------FUNCTION TO EVENT DELEGATE THE PLUS BUTTON BEING CLICK------------------------
 
     function showTabs() {
         if (isTrue == true) {
             return (
-                <div >
-                    <div >
+                <div className='newTabsContainer' >
+                    <div className='newWorkspace'  >
                         <Input
                             type="text"
                             name="name"
                             placeholder='name'
                             required
+                            sx={{mt:2}}
                             value={name}
                             onChange={(event) => setName(event.target.value)}
                         />
@@ -107,6 +114,7 @@ export default function TabsPage() {
                             name="name"
                             placeholder='url'
                             required
+                            sx={{mt:2}}
                             value={url}
                             onChange={(event) => setUrl(event.target.value)}
                         />
@@ -115,13 +123,19 @@ export default function TabsPage() {
                             name="name"
                             placeholder='photo_url'
                             required
+                            sx={{mt:2}}
                             value={photo}
                             onChange={(event) => setPhoto(event.target.value)}
                         />
 
 
-                        <Textarea onChange={(event) => setNotes(event.target.value)} value={notes} ></Textarea>
-                        <Button onClick={postTabs}>Submit</Button> <br />
+                        <Textarea
+                         onChange={(event) => setNotes(event.target.value)} 
+                         value={notes}
+                         sx={{mt:2}} 
+                         ></Textarea>
+                        <Button size='sm' sx={{ml:2,mt:2}} onClick={postTabs}>Submit</Button> 
+                        <Button size='sm' sx={{ml:2}} onClick={setFalse}>Cancel</Button>
                     </div>
 
 
@@ -129,64 +143,99 @@ export default function TabsPage() {
                 </div>
             );
         }
-        else {
-            return (
-               <Button> 
-                
-               </Button>
-            );
-        }
+      
     }
 
 //---------RETURN THAT CONTAINS MAP THAT PASSES INDIVIDUAL TABS INTO A COMPONENT------------------
 
     return (
-        <div className='profileArea' >
+        // <div className='profileArea' >
                   
-                  {
-                img.map((img) => {
-                    return (
-                        <div className='tabsProfileContainer'>
-                        <div className='tabsImageContainer'>
-                          <img className='profileImg' src={img.photo_url} alt="fd" ></img>
-                          <Typography color='primary' sx={{ fontSize: 30, textAlign: 'center', mt: -2, ml: 0, fontWeight: 'bold' }}> <p className='welcomeText'>TABS <br />You're <br />It {user.username.toUpperCase()}!</p></Typography>
-                          <Button variant='outlined' sx={{mb:2}} onClick={sendHome}>HOME</Button>
-                          <Button variant='outlined' onClick={setTrue} >ADD NEW TABS</Button>
-                          <LogOutButton className="btn" />
-                        </div>
-                      </div>
-                    )
-                })
-            }
+        //           {
+        //         img.map((img) => {
+        //             return (
+        //                 <div className='tabsProfileContainer'>
+        //                 <div className='tabsImageContainer'>
+        //                   <img className='profileImg' src={img.photo_url} alt="fd" ></img>
+        //                   <Typography color='primary' sx={{ fontSize: 30, textAlign: 'center', mt: -2, ml: 0, fontWeight: 'bold' }}> <p className='welcomeText'>TABS <br />You're <br />It {user.username.toUpperCase()}!</p></Typography>
+        //                   <Button variant='outlined' sx={{mb:2}} onClick={sendHome}>HOME</Button>
+        //                   <Button variant='outlined' onClick={setTrue} >ADD NEW TABS</Button>
+        //                   <LogOutButton className="btn" />
+        //                 </div>
+        //               </div>
+        //             )
+        //         })
+        //     }
       
       
 
 
-        <div className="tabsArea">
+        // <div className="tabsArea">
               
                 
-            {
-                tabs.map((tab) => {
-                    return (
-                        <div key={tab.id}>
-                            
-                            <DisplayTabs
-                                tabs={tab}
-                                workSpaceId={workSpaceId}
-                                images={img}
-                                user={user}
-                            />
+        //     {
+        //         tabs.map((tab) => {
+        //             return (
 
-                        </div>
+                            
+        //                     <DisplayTabs
+        //                         tabs={tab}
+        //                         workSpaceId={workSpaceId}
+        //                         images={img}
+        //                         user={user}
+        //                     />
+                           
+                           
+                       
+        //             )
+                   
+        //         }) 
+                
+        //     }
+        //        {
+        //             showTabs()
+        //         }
+        // </div>
+       
+         
+        // </div>
+        <div className="profileArea">
+            {
+                img.map( img => {
+                    return (
+                        <div className='tabsProfileContainer'>
+                                        <div className='tabsImageContainer'>
+                                          <img className='profileImg' src={img.photo_url} alt="fd" ></img>
+                                         <Typography color='primary' sx={{ fontSize: 30, textAlign: 'center', mt: -2, ml: 0, fontWeight: 'bold' }}> <p className='welcomeText'>TABS <br />You're <br />It {user.username.toUpperCase()}!</p></Typography>
+                                         <Button variant='outlined' sx={{mb:2}} onClick={sendHome}>HOME</Button>
+                                          <Button variant='outlined' onClick={setTrue} >ADD NEW TABS</Button>
+                                          <LogOutButton className="btn" />
+                                        </div>
+
+                                        <div className='tabsArea'>
+                                            {
+                                                tabs.map(tab => {
+                                                    return (
+                                                        <DisplayTabs 
+                                                        tabs={tab}
+                                                        workSpaceId={workSpaceId}
+                                                        images={img}
+                                                        user={user}
+                                                        />
+                                                    )
+                                                })
+                                            }
+                                            
+                                        </div>
+                                        {showTabs()}
+                                      </div>
+                                      
                     )
                 })
             }
-            {/* {showTabs()} */}
-
-        </div>
         </div>
 
-        
+       
     )
 }
 

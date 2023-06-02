@@ -38,9 +38,18 @@ function LoginForm() {
     <form className="formPanel" onSubmit={login}>
       <div className='loginContainer'>
       <Typography sx={{ mb: 2, mt:20}} variant="h1"  >Login </Typography>
-    <Input color='primary' size='md' variant="solid" className='textV' placeholder='Username'/>
-    <Input color='primary' variant="solid"  className='inputV' placeholder='Password'/>
-    <Button sx={{ mt: 2}} className='submitbutton' color="primary" variant="outlined" type="submit">Submit</Button>
+    <Input 
+    onChange={(event) => setUsername(event.target.value)} 
+    color='primary' size='md'
+     variant="solid" 
+     className='textV' 
+     placeholder='Username'/>
+    <Input  
+    onChange={(event) => setPassword(event.target.value)} 
+    color='primary' variant="solid"  
+    className='inputV' 
+    placeholder='Password'/>
+    <Button onClick={login}  sx={{ mt: 2}} className='submitbutton' color="primary" variant="outlined" type="submit">Submit</Button>
       </div>
 
     </form>

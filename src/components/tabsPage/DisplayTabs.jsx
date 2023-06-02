@@ -11,6 +11,7 @@ import { Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Textarea from '@mui/joy/Textarea';
 import Link from '@mui/material/Link';
+import Dialog from '@mui/material/Dialog';
 
 export default function DisplayTabs(props) {
 
@@ -22,6 +23,9 @@ export default function DisplayTabs(props) {
 
     const setTrue = () => {
         setIsTrue(true)
+    }
+    const backToTabs = () => {
+        history.push(`/tabs/${tab.id}`)
     }
 
     const postTabs = () => {
@@ -44,8 +48,10 @@ export default function DisplayTabs(props) {
     function showTabs() {
         if (isTrue == true) {
             return (
-                <div className='newWorkspaceContainer' >
-                    <div className='newWorkspace'  >
+                <div >
+              
+                <div className='newTabsContainer' >
+                    <div className='newTabs'  >
                         <Input
                             sx={{mt:2}}
                             type="text"
@@ -83,11 +89,13 @@ export default function DisplayTabs(props) {
                         >
 
                         </Textarea>
+                        
                         <Button sx={{mt:2}} onClick={postTabs}>Submit</Button> <br />
                     </div>
 
 
 
+                </div>
                 </div>
             );
         }
@@ -268,19 +276,25 @@ export default function DisplayTabs(props) {
 
     return (
         // updateTabs() 
-      
+    
         <div className="tabsContainer">
-            <div>
+            <div className="tabContent">
             <Typography color="primary" sx={{fontSize:15,mt:2}} component='h3'>{tabs.name} </Typography>
-            <Link target="_blank" rel="noreferrer" href={tabs.url}  underline="none" color="primary" sx={{fontSize:15,mt:2}} > <br />{tabs.url}</Link> 
+            <Link className="url" target="_blank" rel="noreferrer" href={tabs.url}  underline="none" color="primary" sx={{fontSize:15,mt:2}} >
+                 <br /> <Typography color="primary" className="url" sx={{width:200,ml:2 ,mr:1}}>{tabs.url}</Typography> 
+            </Link> 
             <img className="displayTabs" src={tabs.photo} alt="" />
-            <Typography color="primary" sx={{height:50, mt:2, fontSize:15, width:200, ml:3}} component="h4" className='notes'>Notes <br />{tabs.notes}</Typography>
+            <Typography color="primary" sx={{height:50,  fontSize:13, width:200, ml:2}} component="h4" className='notes'>Notes <br />{tabs.notes}</Typography>
             <Button variant="outlined" sx={{mt:7}} onClick={ifTrue} >🖊</Button><Button variant="outlined" sx={{ml:10}}   className="text" onClick={deleteTabs} >❌</Button>
         </div>
        
-        {
-            showTabs()
-        }
+       
         </div>
+       
+       
+       
+     
+    
+        
     )
 }

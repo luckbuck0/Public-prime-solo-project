@@ -104,7 +104,7 @@ function UserPage() {
             <MenuItem>Animations<MenuItem>
           <Select> */}
             <Select sx={{height:30, mr:3}} onChange={() => setSelectedCategory(event.target.value)} >
-    <MenuItem value="Architecturw">Architecture</MenuItem>
+  
     <MenuItem value="Design">Design</MenuItem>
     <MenuItem value="Coding">Coding</MenuItem>
     <MenuItem value="Animation">Animation</MenuItem>

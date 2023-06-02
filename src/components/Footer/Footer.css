@@ -1,9 +1,15 @@
 footer {
-  
-  padding: 0px;
   text-align: center;
-  height: 0px;
-  height: 30px;
-  margin-top: -25px;
+  height: 40px;
+  background-image: linear-gradient(90deg,rgba(33, 117, 195, 0.829),rgba(255, 141, 141, 50));
+  width: 100%;
+}
 
+.foot {
+  background-image: linear-gradient(90deg,rgba(33, 117, 195, 0.829),rgba(255, 141, 141, 50));
+  margin: -10px;
+  height: 20px;
+  height: 40px;
+  margin-top: -75px;
+  width: 100%;
 }

@@ -12,10 +12,40 @@ body {
   background-image: linear-gradient(90deg, #ff91009e 0%, #ffb700d4 100%);
  
   background-size:contain;
-  
-  
+
   
 }
+
+.containe {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .containe {
+    width: 90%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1200px) {
+  .containe {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1201px) {
+  .containe {
+    width: 70%;
+  }
+}
+
+
+
+
+
+
+
+
+
 
 img {
   display: inline-block;
@@ -158,6 +188,7 @@ input {
 .workspaceContainer {
   display: inline-block;
   margin-top: 40px;
+  margin-bottom: 100px;
   width: 300px;
   height: 300px;
 }
@@ -419,7 +450,7 @@ input {
   text-align: center;
   
   opacity: 90%;
- margin-left: 20px;
+ margin-left: 45px;
   margin-top: 25px;
   float: left;
 }
@@ -471,12 +502,12 @@ input {
 }
 
 .tabsArea {
-  display: flex;
-  flex-direction: row;
-  height: 1000px;
 
-  background-image: linear-gradient(rgba(33, 117, 195, 0.829),rgba(255, 141, 141, 50));
   margin: -10px;
+  margin-left: 250px;
+  margin-top: -190px;
+  display: flex;
+  flex-direction:row;
 }
 
 .tabsImageContainer {
@@ -542,7 +573,7 @@ input {
   text-align: center;
   
   opacity: 80%;
-  margin-left: 75px;
+  margin-left: 55px;
   margin-top: 45px;
 }
 
@@ -553,4 +584,44 @@ input {
 
 .loginImage {
   margin-top: -150px;
+}
+
+.newTabsContainer {
+  box-sizing: border-box;
+  height: 400px;
+  width: 250px;
+ 
+  
+  /* background-color: #fcfafa; */
+  border-radius: 50px;
+  /* box-shadow: 0 1px 2px rgba(251, 251, 251, 0); */
+  background-color:#ffb700;
+  opacity: 80%;
+  text-align: center;
+  
+  opacity: 90%;
+  margin-left: 285px;
+  margin-top: 45px;
+  float: left;
+
+}
+
+.newTabs {
+  width: fit-content;
+  float: left;
+  margin-top: 40px;
+  margin-left: 15px;
+}
+
+.url {
+  overflow: hidden;
+  text-overflow: clip;
+  overflow: hidden;
+white-space: nowrap;
+text-align: center;
+
+}
+
+.tabContent {
+  height: 300px;
 }
